@@ -1,0 +1,4 @@
+ALTER TABLE `final`.`coins` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ,
+ADD PRIMARY KEY (`id`);
+;
