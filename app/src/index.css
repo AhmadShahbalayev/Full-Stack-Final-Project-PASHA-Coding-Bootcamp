@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+:root {
+  --purple: #833AE0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.homepage {
+  padding: 52px;
+}
+
+.homepage a {
+  color: black;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.homepage a i {
+  font-size: 10px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+.toggle {
+  transform: rotate(180deg);
+}
+
+.homepage header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.homepage header h1 {
+  width: 600px;
+  min-width: 300px;
+  height: 50px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 50px;
+  line-height: 59px;
+}
+
+.homepage header a {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  line-height: 109%;
+  text-align: end;
+}
+
+.search-bar-box {
+  width: 524px;
+  height: 93px;
+  margin-bottom: 60px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.search-bar input {
+  width: 374px;
+  height: 48px;
+  margin: 5px 30px 10px 0;
+}
+
+.search-bar button {
+  background: var(--purple);
+  width: 120px;
+  height: 48px;
+  border: none;
+  color: white;
+}
+
+.search-bar button:hover {
+  cursor: pointer;
+}
+
+.search-bar-box a {
+  font-size: 14px;
+  line-height: 109%;
+}
+
+.main-catalog {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(214px, 1fr));
+  gap: 104px;
+}
