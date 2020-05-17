@@ -4,7 +4,7 @@ module.exports = {
 
   getCoins: func => {
     pool.query(
-      `SELECT name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
+      `SELECT id, name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
       FROM final.coins`,
       [],
       (err, res) => {
@@ -16,7 +16,7 @@ module.exports = {
 
   getCoinById: (id, func) => {
     pool.query(
-      `SELECT name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
+      `SELECT id, name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
       FROM final.coins WHERE id = ?`,
       [id],
       (err, res) => {
@@ -47,6 +47,17 @@ module.exports = {
         return func(null, res);
       }
     )
+  },
+
+  getCatalog: (type, func) => {
+    pool.query(
+      `SELECT id, name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
+      FROM final.coins WHERE coinType = '${type}'`,
+      [],
+      (err, res) => {
+        if(err) return func(err);
+        return func(null, res);
+      }
+    )
   }
-  
 };

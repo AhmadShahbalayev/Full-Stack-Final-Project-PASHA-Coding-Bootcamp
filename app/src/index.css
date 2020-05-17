@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 
+/* Variables */
+
 :root {
   --purple: #833AE0;
 }
+
+/* Resets */
 
 * {
   box-sizing: border-box;
@@ -10,6 +14,8 @@
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+/* Homepage */
 
 .homepage {
   padding: 52px;
@@ -31,14 +37,43 @@
   transform: rotate(180deg);
 }
 
-.homepage header {
+/* Homepage / Header */
+
+.header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 25px;
 }
 
-.homepage header h1 {
+.c {
+  margin-bottom: 15px !important;
+}
+
+.header span {
+  width: 200px;
+  height: 10px;
+}
+
+.header span a {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 109%;
+  color: #B1ABAB;
+}
+
+.header span span {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 109%;
+  color: #B1ABAB;
+}
+
+.header span a:last-child {
+  text-decoration: none;
+}
+
+.header h1 {
   width: 600px;
   min-width: 300px;
   height: 50px;
@@ -48,13 +83,16 @@
   line-height: 59px;
 }
 
-.homepage header a {
+.header a {
   width: 200px;
   height: 30px;
   font-size: 20px;
   line-height: 109%;
+  justify-self: right;
   text-align: end;
 }
+
+/* Homepage / Main */
 
 .search-bar-box {
   width: 524px;
@@ -62,6 +100,12 @@
   margin-bottom: 60px; 
   display: flex;
   flex-direction: column;
+}
+
+.search-bar-box h6 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 109%;
 }
 
 .search-bar input {
@@ -87,8 +131,44 @@
   line-height: 109%;
 }
 
+/* Homepage / Main / Catalog */
+
 .main-catalog {
   display: grid;
   grid-template-columns: repeat(3, minmax(214px, 1fr));
   gap: 104px;
+}
+
+.main-catalog a {
+  text-decoration: none;
+}
+
+.catalog-header {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 100%;
+}
+
+.show-all {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 109%;
+  margin: 20px 0 10px 0;
+}
+
+.m-catalog-img {
+  width: 214px;
+  height: 214px;
+}
+
+.catalog-header:hover {
+  cursor: pointer;
+}
+
+.show-all:hover {
+  cursor: pointer;
+}
+
+.m-catalog-img:hover {
+  cursor: pointer;
 }

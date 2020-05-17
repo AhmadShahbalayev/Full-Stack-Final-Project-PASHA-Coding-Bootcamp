@@ -2,7 +2,8 @@ const {
   getCoins,
   getCoinById,
   updateCoin,
-  deleteCoin
+  deleteCoin,
+  getCatalog
 } = require('./service');
 
 module.exports = {
@@ -37,6 +38,14 @@ module.exports = {
       if (err) return console.log(err);
       return response.json(res);
     })
-  }
+  },
+
+  getCatalog: (request, response) => {
+    const type = request.params.type;
+    getCoins(type, (err, res) => {
+      if (err) return console.log(err);
+      return response.json(res);
+    })
+  },
 
 };

@@ -1,13 +1,18 @@
 import { combineReducers } from 'redux';
-import { LOADING } from './actions';
+import { LOADING, GET_COINS } from './actions';
 
 const defaultStore = {
   coins: [],
   loading: false
 }
 
-const loading = (store = defaultStore, action) => {
+const reducer = (store = defaultStore, action) => {
   switch(action.type) {
+    case GET_COINS:
+      return {
+        ...store,
+        coins: action.payload
+      }
     case LOADING:
       return {
         ...store,
@@ -19,5 +24,5 @@ const loading = (store = defaultStore, action) => {
 }
 
 export default combineReducers({
-  loading
+  reducer
 });
