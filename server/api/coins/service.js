@@ -32,7 +32,7 @@ module.exports = {
       WHERE id = ${id}`,
       [data.name, data.value, data.year, data.price, data.country, data.metal, data.shortDescription, data.fullDescription, data.quality, data.weight],
       (err, res) => {
-        if(err) return func(err);
+        if (err) return func(err);
         return func(null, res);
       }
     )
@@ -43,7 +43,7 @@ module.exports = {
       `DELETE FROM final.coins WHERE id = ${id}`,
       [],
       (err, res) => {
-        if(err) return func(err);
+        if (err) return func(err);
         return func(null, res);
       }
     )
@@ -51,11 +51,23 @@ module.exports = {
 
   getCatalog: (type, func) => {
     pool.query(
-      `SELECT id, name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight
+      `SELECT id, name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, coinType
       FROM final.coins WHERE coinType = '${type}'`,
       [],
       (err, res) => {
-        if(err) return func(err);
+        if (err) return func(err);
+        return func(null, res);
+      }
+    )
+  },
+
+  addCoinToDB: (data, func) => {
+    pool.query(
+      `INSERT INTO final.coins (name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, coinType)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [data.name, data.value, data.year, data.price, data.country, data.metal, data.shortDescription, data.fullDescription, data.quality, data.weight, data.coinType],
+      (err, res) => {
+        if (err) return func(err);
         return func(null, res);
       }
     )

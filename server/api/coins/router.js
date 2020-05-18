@@ -3,7 +3,8 @@ const {
   getCoinById,
   updateCoin,
   deleteCoin,
-  getCatalog
+  getCatalog,
+  addCoinToDB,
 } = require('./controller');
 
 const router = require('express').Router();
@@ -12,6 +13,7 @@ router.get('/coins', getCoins);
 router.get('/coins/:id', getCoinById);
 router.put('/coins/:id', updateCoin);
 router.delete('/coins/:id', deleteCoin);
-router.get('/:type', getCatalog);
+router.get('/catalog/:type', getCatalog);
+router.post('/coins', addCoinToDB);
 
 module.exports = router;

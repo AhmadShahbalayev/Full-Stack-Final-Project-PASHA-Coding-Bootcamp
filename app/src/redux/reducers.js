@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import { LOADING, GET_COINS } from './actions';
+import { reducer as formReducer } from 'redux-form';
+import { LOADING, GET_COINS, GET_COIN_BY_ID } from './actions';
 
 const defaultStore = {
   coins: [],
-  loading: false
+  loading: false,
+  coin: {}
 }
 
 const reducer = (store = defaultStore, action) => {
@@ -12,6 +14,11 @@ const reducer = (store = defaultStore, action) => {
       return {
         ...store,
         coins: action.payload
+      }
+    case GET_COIN_BY_ID:
+      return {
+        ...store,
+        coin: action.payload
       }
     case LOADING:
       return {
@@ -24,5 +31,6 @@ const reducer = (store = defaultStore, action) => {
 }
 
 export default combineReducers({
-  reducer
+  reducer,
+  form: formReducer
 });
