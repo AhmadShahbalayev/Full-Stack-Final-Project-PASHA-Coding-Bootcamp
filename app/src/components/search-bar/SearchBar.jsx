@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
           <input type="text"/>
           <button>Search</button>
         </div>
-        <Link to='/advanced-filter'>Advanced filter<i className="fas fa-chevron-down"></i></Link>
+        {this.props.advanced ? <Link to='/advanced-filter'>Advanced filter<i className="fas fa-chevron-down"></i></Link> : null}
       </section>
     );
   }

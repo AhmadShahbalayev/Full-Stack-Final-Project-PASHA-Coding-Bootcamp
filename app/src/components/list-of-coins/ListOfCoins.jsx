@@ -37,7 +37,7 @@ class ListOfCoins extends React.Component {
     return (
       <div className='homepage'>
         <HeaderOfCoins />
-        <SearchBar />
+        <SearchBar advanced={true} />
         <section className='list-of-coins'>
           {this.renderList()}
         </section>

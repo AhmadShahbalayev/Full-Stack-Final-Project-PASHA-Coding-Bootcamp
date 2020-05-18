@@ -50,7 +50,8 @@ module.exports = {
   },
 
   addCoinToDB: (request, response) => {
-    addCoinToDB(request.body, (err, res) => {
+    console.log(request.body.coinType)
+    addCoinToDB(request, (err, res) => {
       if (err) return console.log(err);
       return response.json(res);
     })

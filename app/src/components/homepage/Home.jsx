@@ -8,7 +8,7 @@ class Home extends React.Component {
     return (
       <div className='homepage'>
         <Header />
-        <SearchBar />
+        <SearchBar advanced={true} />
         <Catalog />
       </div>
     );
