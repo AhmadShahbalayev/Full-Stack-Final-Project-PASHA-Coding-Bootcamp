@@ -46,17 +46,17 @@ class AdminCE extends React.Component {
           <Field type='text' name='value' label='Face value' component={this.inputField} />
           <Field type='file' name='reverseLink' label='Download the reverse' component={this.fileField} />
           <Field type='text' name='year' label='Year of issue' component={this.inputField} />
-          <Field type='text' name='price' label='Price' component={this.inputField} />
-          <Field type='text' name='country' label='Country' component={this.inputField} />
-          <Field type='text' name='metal' label='Metal' component={this.inputField} />
           <Field type='textarea' name='fullDescription' label='Long description' component={this.textAreaField} />
-          <Field type='text' name='quality' label='Quality of the coin' component={this.inputField} />
-          <Field type='text' name='weight' label='Weight' component={this.inputField} />
           <Field type='text' name='coinType' label='Type of coin' component={this.inputField} />
+          <Field type='text' name='price' label='Price' component={this.inputField} />
           <div className='btns-field'>
             <button type='submit' className='login-btn'>Save</button>
             <Link className='cancel-btn' to='/admin/panel'>Cancel</Link>
           </div>
+          <Field type='text' name='country' label='Country' component={this.inputField} />
+          <Field type='text' name='quality' label='Quality of the coin' component={this.inputField} />
+          <Field type='text' name='metal' label='Metal' component={this.inputField} />
+          <Field type='text' name='weight' label='Weight' component={this.inputField} />
         </div>
       </form>
     );

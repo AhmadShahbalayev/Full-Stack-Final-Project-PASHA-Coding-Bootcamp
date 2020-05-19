@@ -316,6 +316,8 @@
 .btns-field {
   display: flex;
   justify-content: center;
+  grid-row: span 3;
+  align-self: flex-end;
 }
 
 /* Admin panel / create & edit */
@@ -474,4 +476,20 @@
 
 .info-textarea button:hover {
   cursor: pointer;
+}
+
+/* FILTER */
+
+.filter-grid {
+  display: grid;
+  width: 789px;
+  grid-template-columns: repeat(3, minmax(374px, 1fr));
+  grid-auto-flow: dense;
+  gap: 30px;
+}
+
+.filter-grid div input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid black;
 }
