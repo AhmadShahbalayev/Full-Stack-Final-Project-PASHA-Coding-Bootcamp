@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { LOADING, GET_ALL_COINS, GET_COINS, GET_COIN_BY_ID } from './actions';
+import { LOADING, GET_ALL_COINS, GET_COINS, GET_COIN_BY_ID, LOGIN } from './actions';
 
 const defaultStore = {
   allCoins: [],
@@ -36,7 +36,19 @@ const reducer = (store = defaultStore, action) => {
   }
 }
 
+const loginReducer = (store = { status: false }, action) => {
+  switch(action.type) {
+    case LOGIN: 
+      return {
+        status: action.payload
+      };
+    default:
+      return store;
+  }
+}
+
 export default combineReducers({
   reducer,
-  form: formReducer
+  form: formReducer,
+  loginReducer
 });

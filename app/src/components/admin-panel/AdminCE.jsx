@@ -14,12 +14,12 @@ class AdminCE extends React.Component {
       </div>
     )
   }
-  textAreaField = ({ label, input, type, meta: { touched, error, warning } }) => {
+  textAreaField = ({ label, input, meta: { touched, error, warning } }) => {
     delete input.value
     return (
       <div className='textar'>
         <label>{label}</label>
-        <input className='textarea' type={type} {...input}></input>
+        <textarea className='textarea' rows='5' cols='50' {...input}></textarea>
       </div>
     )
   }
@@ -41,12 +41,12 @@ class AdminCE extends React.Component {
         <h1 className='admin-header'>Admin panel</h1>
         <div className='admin-ce-grid'>
           <Field type='text' name='name' label='Coin name' component={this.inputField} />
-          <Field type='textarea' name='shortDescription' label='Short description' component={this.textAreaField} />
+          <Field name='shortDescription' label='Short description' component={this.textAreaField} />
           <Field type='file' name='obverseLink' label='Download the averse' component={this.fileField} />
           <Field type='text' name='value' label='Face value' component={this.inputField} />
           <Field type='file' name='reverseLink' label='Download the reverse' component={this.fileField} />
           <Field type='text' name='year' label='Year of issue' component={this.inputField} />
-          <Field type='textarea' name='fullDescription' label='Long description' component={this.textAreaField} />
+          <Field name='fullDescription' label='Long description' component={this.textAreaField} />
           <Field type='text' name='coinType' label='Type of coin' component={this.inputField} />
           <Field type='text' name='price' label='Price' component={this.inputField} />
           <div className='btns-field'>

@@ -62,7 +62,6 @@ module.exports = {
   },
 
   addCoinToDB: (data, func) => {
-    console.log(data.body.coinType)
     pool.query(
       `INSERT INTO final.coins (name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, obverseLink, reverseLink, coinType)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -81,6 +80,30 @@ module.exports = {
         `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
         data.body.coinType
       ],
+      (err, res) => {
+        if (err) return func(err);
+        return func(null, res);
+      }
+    )
+  },
+
+  addAdmin: (username, hashedPasswordWithSalt, func) => {
+    pool.query(
+      `INSERT INTO final.admins (username, password)
+      VALUES (?, ?)`,
+      [username, hashedPasswordWithSalt],
+      (err, res) => {
+        if (err) return func(err);
+        return func(null, res);
+      }
+    )
+  },
+
+  getAdmin: func => {
+    pool.query(
+      `SELECT username, password
+      FROM final.admins`,
+      [],
       (err, res) => {
         if (err) return func(err);
         return func(null, res);

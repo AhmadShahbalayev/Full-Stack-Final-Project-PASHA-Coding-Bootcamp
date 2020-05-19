@@ -5,6 +5,9 @@ const {
   deleteCoin,
   getCatalog,
   addCoinToDB,
+  addAdmin,
+  checkAdminRights,
+  login
 } = require('./controller');
 
 const multer = require('multer');
@@ -26,6 +29,9 @@ const upload = multer(
 )
 
 const router = require('express').Router();
+
+router.post('/add-admin', checkAdminRights, addAdmin);
+router.post('/admin', login);
 
 router.get('/coins', getCoins);
 router.get('/coins/:id', getCoinById);
