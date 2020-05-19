@@ -83,7 +83,6 @@ module.exports = {
     getAdmin( async (err, res) => {
       if (err) return console.log(err);
       let admins = JSON.parse(JSON.stringify(res));
-      console.log(request.body);
       let admin = admins.find(admin => admin.username === request.body.username);
       if (!admin) return response.status(400).send('Cannot find admin');
       try {

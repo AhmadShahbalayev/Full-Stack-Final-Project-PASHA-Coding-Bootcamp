@@ -79,7 +79,6 @@ export const adminCE = (values) => async dispatch => {
 }
 
 export const login = (values) => async dispatch => {
-  console.log(values)
   const response = await fetch(
     'http://localhost:5000/admin',
     {
@@ -92,7 +91,6 @@ export const login = (values) => async dispatch => {
   ).then(res => res.json());
 
   const { status } = response;
-
   if (status) history.push('/admin/panel');
 
   dispatch({ type: LOGIN, payload: status })
