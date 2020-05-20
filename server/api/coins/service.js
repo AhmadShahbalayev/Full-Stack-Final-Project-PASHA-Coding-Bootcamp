@@ -26,7 +26,7 @@ module.exports = {
 
   updateCoin: (data, id, func) => {
     pool.query(
-      `UPDATE final.coins SET name = ?, value = ?, year = ?, price = ?, country = ?, metal = ?, shortDescription = ?, fullDescription = ?, quality = ?, weight =?
+      `UPDATE final.coins SET name = ?, value = ?, year = ?, price = ?, country = ?, metal = ?, shortDescription = ?, fullDescription = ?, quality = ?, weight = ?
       WHERE id = ${id}`,
       [data.name, data.value, data.year, data.price, data.country, data.metal, data.shortDescription, data.fullDescription, data.quality, data.weight],
       (err, res) => {
