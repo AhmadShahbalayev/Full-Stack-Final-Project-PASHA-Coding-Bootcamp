@@ -109,5 +109,24 @@ module.exports = {
         return func(null, res);
       }
     )
+  },
+
+  searchCoin: (value, func) => {
+    pool.query(
+      `SELECT * FROM final.coins WHERE name LIKE '%${value}%'
+      OR value LIKE '%${value}%'
+      OR year LIKE '%${value}%'
+      OR price LIKE '%${value}%'
+      OR country LIKE '%${value}%'
+      OR metal LIKE '%${value}%'
+      OR shortDescription LIKE '%${value}%'
+      OR fullDescription LIKE '%${value}%'
+      OR quality LIKE '%${value}%'
+      OR coinType LIKE '%${value}%'`,
+      (err, res) => {
+        if (err) return func(err);
+        return func(null, res);
+      }
+    )
   }
 };

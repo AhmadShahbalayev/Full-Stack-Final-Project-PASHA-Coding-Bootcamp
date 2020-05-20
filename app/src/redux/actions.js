@@ -14,16 +14,16 @@ export const loading = () => {
 }
 
 export const getAllCoins = () => {
-  return (func) => {
-    func(loading());
+  return (dispatch) => {
+    dispatch(loading());
     fetch(`http://localhost:5000/coins`)
       .then(res => res.json())
-      .then(res => func({
+      .then(res => dispatch({
         type: GET_ALL_COINS,
         payload: res
       }))
       .catch(err => console.log(err))
-      .finally(func(loading()));
+      .finally(dispatch(loading()));
   }
 }
 

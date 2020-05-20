@@ -6,7 +6,8 @@ const {
   getCatalog,
   addCoinToDB,
   addAdmin,
-  getAdmin
+  getAdmin,
+  searchCoin
 } = require('./service');
 
 const bcrypt = require('bcrypt');
@@ -87,16 +88,20 @@ module.exports = {
       if (!admin) return response.status(400).send('Cannot find admin');
       try {
         const comparison = await bcrypt.compare(request.body.password, admin.password);
-        if (comparison) {
-          response.json({ status: true });
-        };
-        if (!comparison) {
-          response.json({ status: false });
-        };
+        if (comparison) response.json({ status: true });
+        if (!comparison) response.json({ status: false });
       }
       catch {
         response.status(500).send();
       }
     });
+  },
+
+  searchCoin: (request, response) => {
+    const value = request.query.search;
+    searchCoin(value, (err, res) => {
+      if (err) return console.log(err);
+      return response.json(res);
+    })
   }
 };

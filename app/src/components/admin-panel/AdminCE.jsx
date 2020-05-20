@@ -5,6 +5,19 @@ import { adminCE } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 
 class AdminCE extends React.Component {
+  selectField = ({ label, input, meta: { touched, error, warning } }) => {
+    delete input.value
+    return (
+      <div>
+        <label>{label}</label>
+        <select {...input}>
+          <option>memorial</option>
+          <option>invested</option>
+          <option>exclusive</option>
+        </select>
+      </div>
+    )
+  }
   fileField = ({ label, input, type, meta: { touched, error, warning } }) => {
     delete input.value
     return (
@@ -47,7 +60,7 @@ class AdminCE extends React.Component {
           <Field type='file' name='reverseLink' label='Download the reverse' component={this.fileField} />
           <Field type='text' name='year' label='Year of issue' component={this.inputField} />
           <Field name='fullDescription' label='Long description' component={this.textAreaField} />
-          <Field type='text' name='coinType' label='Type of coin' component={this.inputField} />
+          <Field type='text' name='coinType' label='Type of coin' component={this.selectField} />
           <Field type='text' name='price' label='Price' component={this.inputField} />
           <div className='btns-field'>
             <button type='submit' className='login-btn'>Save</button>
