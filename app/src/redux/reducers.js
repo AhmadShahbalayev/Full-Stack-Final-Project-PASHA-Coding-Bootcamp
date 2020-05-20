@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { LOADING, GET_ALL_COINS, GET_COINS, GET_COIN_BY_ID, LOGIN } from './actions';
+import { LOADING, GET_ALL_COINS, GET_COINS, GET_COIN_BY_ID, LOGIN, DELETE_COIN } from './actions';
 
 const defaultStore = {
   allCoins: [],
@@ -30,6 +30,11 @@ const reducer = (store = defaultStore, action) => {
       return {
         ...store,
         loading: !store.loading
+      }
+    case DELETE_COIN:
+      return {
+        ...store,
+        allCoins: store.allCoins.filter(item => item.id !== action.payload)
       }
     default:
       return store;

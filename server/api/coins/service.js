@@ -73,7 +73,7 @@ module.exports = {
         data.body.fullDescription, 
         data.body.quality, 
         data.body.weight, 
-        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, 
+        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
         `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
         data.body.coinType
       ],

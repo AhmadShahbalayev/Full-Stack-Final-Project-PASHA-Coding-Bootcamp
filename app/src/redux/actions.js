@@ -6,6 +6,7 @@ export const GET_COINS = 'GET_COINS';
 export const ADMIN_CE = 'ADMIN_CE';
 export const GET_COIN_BY_ID = 'GET_COIN_BY_ID';
 export const LOGIN = 'LOGIN';
+export const DELETE_COIN = 'DELETE_COIN';
 
 export const loading = () => {
   return {
@@ -101,11 +102,25 @@ export const login = (values) => async dispatch => {
 }
 
 export const updateCoin = (values, id) => async dispatch => {
+  let formData = new FormData();
+  formData.append('name', values.name);
+  formData.append('value', values.value);
+  formData.append('year', values.year);
+  formData.append('price', values.price);
+  formData.append('country', values.country);
+  formData.append('metal', values.metal);
+  formData.append('shortDescription', values.shortDescription);
+  formData.append('fullDescription', values.fullDescription);
+  formData.append('quality', values.quality);
+  formData.append('weight', values.weight);
+  formData.append('obverseLink', values.obverseLink[0]);
+  formData.append('reverseLink', values.reverseLink[0]);
+  formData.append('coinType', values.coinType);
   const res = await fetch(
     `http://localhost:5000/coins/${id}`,
     {
       method: 'PUT',
-      body: JSON.stringify(values),
+      body: formData,
       headers: {
         'Content-Type': 'application/json'
       }
@@ -117,4 +132,5 @@ export const updateCoin = (values, id) => async dispatch => {
 export const deleteCoin = (id) => async dispatch => {
   await fetch(`http://localhost:5000/delete-coin/${id}`, { method: 'DELETE' })
   .then(res => res.json());
+  dispatch({ type: DELETE_COIN, payload: id })
 }

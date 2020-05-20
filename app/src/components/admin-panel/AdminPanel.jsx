@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 import { getAllCoins, deleteCoin } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import history from '../../history';
+import ModalWindow from './ModalWindow';
 
 class AdminPanel extends React.Component {
+  state = {
+    show: false,
+    id: 0
+  }
+  showOrHide = (id) => {
+    this.setState({show: !this.state.show, id});
+  }
   componentDidMount = () => {
     this.props.getAllCoins();
-  }
-  deleteCoin = (e) => {
-    let res = window.confirm('Are you sure that you want to delte the coin?');
-    if (res) this.props.deleteCoin(e.target.value);
   }
   renderList = () => {
     return this.props.allCoins.map(i => {
@@ -33,7 +37,7 @@ class AdminPanel extends React.Component {
           </div>
           <div className='admin-btn-box'>
             <button onClick={() => history.push(`/admin/edit/${i.id}`)} className='cancel-btn margin0'>Edit</button>
-            <button onClick={this.deleteCoin} value={i.id} className='cancel-btn margin0'>Delete</button>
+            <button onClick={() => this.showOrHide(i.id)} className='cancel-btn margin0'>Delete</button>
           </div>
         </div>
       )
@@ -47,6 +51,7 @@ class AdminPanel extends React.Component {
     if (this.props.status) {
       return (
         <div style={{ padding: '52px' }}>
+        {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
           <h1 className='admin-header'>Admin panel</h1>
           <SearchBar />
           <div className='admin-panel-list-box'>

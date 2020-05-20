@@ -13,7 +13,7 @@ class CoinEdit extends React.Component {
     this.props.updateCoin(values, id);
   }
   render = () => {
-    if (this.props.coin) {
+    if (this.props.coin.id >= 0) {
       return (
         <div>
           <AdminCE

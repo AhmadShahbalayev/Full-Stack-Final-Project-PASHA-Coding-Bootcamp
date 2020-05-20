@@ -226,9 +226,6 @@
   font-size: 14px;
   line-height: 109%;
   outline: none;
-}
-
-.add-coin button:hover {
   cursor: pointer;
 }
 
@@ -520,4 +517,38 @@
   width: 100%;
   height: 48px;
   border: 1px solid black;
+}
+
+/* Modal window */
+
+.ghost {
+  margin: -52px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+.modal-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 450px;
+  height: 250px;
+  border: 1px solid #413c69;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.modal-btn-box {
+  width: 275px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }

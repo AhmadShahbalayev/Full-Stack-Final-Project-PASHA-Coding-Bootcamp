@@ -42,7 +42,6 @@ class AdminCE extends React.Component {
     )
   }
   render = () => {
-    console.log(this.props.initialValues)
     return (
       <form className='admin-panel' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
         <h1 className='admin-header'>Admin panel</h1>
