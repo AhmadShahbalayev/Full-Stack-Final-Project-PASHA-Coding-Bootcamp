@@ -32,35 +32,51 @@ class AdminPanel extends React.Component {
             </div>
           </div>
           <div className='admin-btn-box'>
-            <button onClick={()=> history.push(`/admin/edit/${i.id}`)} className='cancel-btn margin0'>Edit</button>
+            <button onClick={() => history.push(`/admin/edit/${i.id}`)} className='cancel-btn margin0'>Edit</button>
             <button onClick={this.deleteCoin} value={i.id} className='cancel-btn margin0'>Delete</button>
           </div>
         </div>
       )
     })
   }
+  logout = () => {
+    localStorage.removeItem('LoggedIn');
+    history.goBack();
+  }
   render = () => {
-    return (
-      <div style={{ padding: '52px' }}>
-        <h1 className='admin-header'>Admin panel</h1>
-        <SearchBar />
-        <div className='admin-panel-list-box'>
-          <div className='panel-list'>
-            {this.renderList()}
+    if (this.props.status) {
+      return (
+        <div style={{ padding: '52px' }}>
+          <h1 className='admin-header'>Admin panel</h1>
+          <SearchBar />
+          <div className='admin-panel-list-box'>
+            <div className='panel-list'>
+              {this.renderList()}
+            </div>
+          </div>
+          <div className='add-login-and-logout-box'>
+            <div className='add-coin'>
+              <div className='coin-border'>+</div>
+              <button onClick={() => history.push('/admin/create')}>Add new coin</button>
+            </div>
+            <button className='logout' onClick={this.logout}>Logout</button>
           </div>
         </div>
-        <div className='add-coin'>
-          <div className='coin-border'>+</div>
-          <button onClick={() => history.push('/admin/create')}>Add new coin</button>
+      );
+    } else {
+      return (
+        <div style={{ padding: '52px' }}>
+          <h1>You are not logged in! Please <Link to='/admin'>Login</Link></h1>
         </div>
-      </div>
-    );
+      )
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    allCoins: state.reducer.allCoins
+    allCoins: state.reducer.allCoins,
+    status: state.loginReducer.status
   }
 }
 

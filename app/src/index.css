@@ -339,6 +339,7 @@
   width: 100%;
   height: 48px;
   border: 1px solid black;
+  padding: 10px;
 }
 
 .textar {
@@ -350,6 +351,24 @@
   width: 100%;
   border: 1px solid black;
   resize: none;
+  padding: 10px;
+}
+
+.add-login-and-logout-box {
+  display: flex;
+  justify-content: space-between;
+  width: 510px;
+  align-items: center;
+}
+
+.logout {
+  background: var(--purple);
+  width: 120px;
+  height: 48px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 /* List of coins */

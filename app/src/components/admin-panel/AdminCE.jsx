@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 class AdminCE extends React.Component {
   selectField = ({ label, input, meta: { touched, error, warning } }) => {
-    delete input.value
     return (
       <div>
         <label>{label}</label>
@@ -27,7 +26,6 @@ class AdminCE extends React.Component {
     )
   }
   textAreaField = ({ label, input, meta: { touched, error, warning } }) => {
-    delete input.value
     return (
       <div className='textar'>
         <label>{label}</label>
@@ -36,7 +34,6 @@ class AdminCE extends React.Component {
     )
   }
   inputField = ({ label, input, type, meta: { touched, error, warning } }) => {
-    delete input.value
     return (
       <div>
         <label>{label}</label>
@@ -45,6 +42,7 @@ class AdminCE extends React.Component {
     )
   }
   render = () => {
+    console.log(this.props.initialValues)
     return (
       <form className='admin-panel' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
         <h1 className='admin-header'>Admin panel</h1>

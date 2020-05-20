@@ -13,37 +13,11 @@ class CoinEdit extends React.Component {
     this.props.updateCoin(values, id);
   }
   render = () => {
-    console.log(this.props.coin)
     if (this.props.coin) {
-      const {
-        name,
-        value,
-        year,
-        price,
-        country,
-        metal,
-        fullDescription,
-        shortDescription,
-        quality,
-        weight,
-        coinType
-      } = this.props.coin;
       return (
         <div>
           <AdminCE
-            initialValues={{
-              name,
-              value,
-              year,
-              price,
-              country,
-              metal,
-              fullDescription,
-              shortDescription,
-              quality,
-              weight,
-              coinType
-            }}
+            initialValues={this.props.coin}
             onSubmit={this.onSubmit}
           />
         </div>

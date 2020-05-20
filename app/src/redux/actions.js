@@ -92,7 +92,10 @@ export const login = (values) => async dispatch => {
   ).then(res => res.json());
 
   const { status } = response;
-  if (status) history.push('/admin/panel');
+  if (status) {
+    localStorage.setItem('LoggedIn', true);
+    history.push('/admin/panel');
+  };
 
   dispatch({ type: LOGIN, payload: status })
 }

@@ -36,7 +36,7 @@ const reducer = (store = defaultStore, action) => {
   }
 }
 
-const loginReducer = (store = { status: false }, action) => {
+const loginReducer = (store = { status: localStorage.getItem('LoggedIn') }, action) => {
   switch(action.type) {
     case LOGIN: 
       return {
