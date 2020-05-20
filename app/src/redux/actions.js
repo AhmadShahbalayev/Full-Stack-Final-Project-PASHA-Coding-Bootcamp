@@ -55,7 +55,7 @@ export const getCoinById = (id) => {
   }
 }
 
-export const adminCE = (values) => async dispatch => {
+export const createCoin = (values) => async dispatch => {
   let formData = new FormData();
   formData.append('name', values.name);
   formData.append('value', values.value);
@@ -76,6 +76,7 @@ export const adminCE = (values) => async dispatch => {
   }).then(res => res.json());
 
   dispatch({ type: ADMIN_CE, payload: response.data })
+  history.push('/admin/panel');
 }
 
 export const login = (values) => async dispatch => {
@@ -94,4 +95,23 @@ export const login = (values) => async dispatch => {
   if (status) history.push('/admin/panel');
 
   dispatch({ type: LOGIN, payload: status })
+}
+
+export const updateCoin = (values, id) => async dispatch => {
+  const res = await fetch(
+    `http://localhost:5000/coins/${id}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then(res => res.json());
+  history.push('/admin/panel');
+}
+
+export const deleteCoin = (id) => async dispatch => {
+  await fetch(`http://localhost:5000/delete-coin/${id}`, { method: 'DELETE' })
+  .then(res => res.json());
 }

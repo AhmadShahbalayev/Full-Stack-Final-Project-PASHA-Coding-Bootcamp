@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { adminCE } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 
 class AdminCE extends React.Component {
@@ -11,6 +9,7 @@ class AdminCE extends React.Component {
       <div>
         <label>{label}</label>
         <select {...input}>
+          <option hidden></option>
           <option>memorial</option>
           <option>invested</option>
           <option>exclusive</option>
@@ -45,12 +44,9 @@ class AdminCE extends React.Component {
       </div>
     )
   }
-  onSubmit = (values) => {
-    this.props.adminCE(values);
-  }
   render = () => {
     return (
-      <form className='admin-panel' onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <form className='admin-panel' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
         <h1 className='admin-header'>Admin panel</h1>
         <div className='admin-ce-grid'>
           <Field type='text' name='name' label='Coin name' component={this.inputField} />
@@ -76,6 +72,4 @@ class AdminCE extends React.Component {
   }
 }
 
-export default reduxForm(
-  { form: 'reduxAdminCE' }
-)(connect(null, { adminCE })(AdminCE));
+export default reduxForm({ form: 'reduxAdminCE' })(AdminCE);

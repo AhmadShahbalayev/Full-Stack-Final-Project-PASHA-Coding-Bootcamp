@@ -4,11 +4,12 @@ import Home from './homepage/Home';
 import ListOfCoins from './list-of-coins/ListOfCoins';
 import AdminLogin from './admin-panel/AdminLogin';
 import Filter from './homepage/advanced-filter/Filter';
-import AdminCE from './admin-panel/AdminCE';
 import CoinInfo from './list-of-coins/coin-info/CoinInfo';
 import { connect } from 'react-redux';
 import { loading } from '../redux/actions';
 import AdminPanel from './admin-panel/AdminPanel';
+import CoinEdit from './admin-panel/CoinEdit';
+import CoinCreate from './admin-panel/CoinCreate';
 
 class App extends React.Component {
   render = () => {
@@ -20,7 +21,8 @@ class App extends React.Component {
         <Route exact path='/advanced-filter' component={Filter} />
         <Route exact path='/admin' component={AdminLogin} />
         <Route exact path='/admin/panel' component={AdminPanel} />
-        <Route exact path='/admin/create-edit' component={AdminCE} />
+        <Route exact path='/admin/create' component={CoinCreate} />
+        <Route exact path='/admin/edit/:id' component={CoinEdit} />
         <Route exact path='/coins/:id' component={CoinInfo} />
       </div>
     );

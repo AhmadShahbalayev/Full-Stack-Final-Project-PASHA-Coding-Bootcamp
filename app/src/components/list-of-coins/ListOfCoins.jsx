@@ -11,10 +11,8 @@ class ListOfCoins extends React.Component {
   }
   renderList = () => {
     return this.props.coins.map(i => {
-      let nameInDB = i.name;
-      nameInDB = nameInDB.replace(/\s+/g, "_");
-      let URL = `http://localhost:5000/images/${nameInDB}_1.png`;
-      let ALT = `icon_of_${nameInDB}`;
+      let URL = i.obverseLink;
+      let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
       return (
         <div key={i.id}>

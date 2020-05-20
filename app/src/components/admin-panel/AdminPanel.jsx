@@ -1,19 +1,22 @@
 import React from 'react';
 import SearchBar from '../search-bar/SearchBar';
 import { connect } from 'react-redux';
-import { getAllCoins } from '../../redux/actions';
+import { getAllCoins, deleteCoin } from '../../redux/actions';
 import { Link } from 'react-router-dom';
+import history from '../../history';
 
 class AdminPanel extends React.Component {
   componentDidMount = () => {
     this.props.getAllCoins();
   }
+  deleteCoin = (e) => {
+    let res = window.confirm('Are you sure that you want to delte the coin?');
+    if (res) this.props.deleteCoin(e.target.value);
+  }
   renderList = () => {
     return this.props.allCoins.map(i => {
-      let nameInDB = i.name;
-      nameInDB = nameInDB.replace(/\s+/g, "_");
-      let URL = `http://localhost:5000/images/${nameInDB}_1.png`;
-      let ALT = `icon_of_${nameInDB}`;
+      let URL = i.obverseLink;
+      let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
       return (
         <div className='admin-panel-list' key={i.id}>
@@ -29,8 +32,8 @@ class AdminPanel extends React.Component {
             </div>
           </div>
           <div className='admin-btn-box'>
-            <button className='cancel-btn margin0'>Edit</button>
-            <button className='cancel-btn margin0'>Delete</button>
+            <button onClick={()=> history.push(`/admin/edit/${i.id}`)} className='cancel-btn margin0'>Edit</button>
+            <button onClick={this.deleteCoin} value={i.id} className='cancel-btn margin0'>Delete</button>
           </div>
         </div>
       )
@@ -48,7 +51,7 @@ class AdminPanel extends React.Component {
         </div>
         <div className='add-coin'>
           <div className='coin-border'>+</div>
-          <button>Add new coin</button>
+          <button onClick={() => history.push('/admin/create')}>Add new coin</button>
         </div>
       </div>
     );
@@ -61,4 +64,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getAllCoins })(AdminPanel);
+export default connect(mapStateToProps, { getAllCoins, deleteCoin })(AdminPanel);

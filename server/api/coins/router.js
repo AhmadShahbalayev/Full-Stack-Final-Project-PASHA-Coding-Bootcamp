@@ -18,7 +18,7 @@ const storage = multer.diskStorage(
   {
     destination: './upload/images',
     filename: (req, file, func) => {
-      return func(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+      return func(null, `${path.parse(file.originalname).name}_${Date.now()}${path.extname(file.originalname)}`);
     }
   }
 )
@@ -50,6 +50,6 @@ router.put('/coins/:id', updateCoin);
 
 // DELETES: 
 
-router.delete('/coins/:id', deleteCoin);
+router.delete('/delete-coin/:id', deleteCoin);
 
 module.exports = router;

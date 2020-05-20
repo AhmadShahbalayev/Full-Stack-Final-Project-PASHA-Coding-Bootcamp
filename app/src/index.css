@@ -246,6 +246,7 @@
   width: 674px;
   height: 265px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .admin-btn-box {

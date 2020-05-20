@@ -10,13 +10,15 @@ class Filter extends React.Component {
     this.props.getAllCoins();
   }
   selectField = ({ label, input, meta: { touched, error, warning } }) => {
+    let options = this.props.allCoins.map(op => op[input.name]);
+    let unique = [...new Set(options)];
     delete input.value
     return (
       <div>
         <label>{label}</label>
         <select {...input}>
-          {this.props.allCoins.map(option => {
-            return <option key={option.id} value={option[input.name]}>{option[input.name]}</option>
+          {unique.map(op => {
+            return <option key={op} value={op}>{op}</option>
           })}
         </select>
       </div>
