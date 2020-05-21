@@ -12,7 +12,7 @@ class AdminPanel extends React.Component {
     id: 0
   }
   showOrHide = (id) => {
-    this.setState({show: !this.state.show, id});
+    this.setState({ show: !this.state.show, id });
   }
   componentDidMount = () => {
     this.props.getAllCoins();
@@ -45,14 +45,21 @@ class AdminPanel extends React.Component {
   }
   logout = () => {
     localStorage.removeItem('LoggedIn');
-    history.goBack();
+    history.push('/');
   }
   render = () => {
     if (this.props.status) {
       return (
         <div style={{ padding: '52px' }}>
-        {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
+          {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
           <h1 className='admin-header'>Admin panel</h1>
+          <div className='back-to-home'>
+            <span className='c'>
+              <Link to='/'>Homepage</Link>
+              <span> &mdash; </span>
+              <span>Admin panel</span>
+            </span>
+          </div>
           <SearchBar />
           <div className='admin-panel-list-box'>
             <div className='panel-list'>
@@ -61,7 +68,7 @@ class AdminPanel extends React.Component {
           </div>
           <div className='add-login-and-logout-box'>
             <div className='add-coin'>
-              <div className='coin-border'>+</div>
+              <div onClick={() => history.push('/admin/create')} className='coin-border'>+</div>
               <button onClick={() => history.push('/admin/create')}>Add new coin</button>
             </div>
             <button className='logout' onClick={this.logout}>Logout</button>

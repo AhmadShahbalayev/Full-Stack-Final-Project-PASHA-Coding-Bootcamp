@@ -47,22 +47,19 @@
 }
 
 .c {
-  margin-bottom: 15px !important;
-}
-
-.header span {
+  margin-bottom: -15px !important;
   width: 200px;
   height: 10px;
 }
 
-.header span a {
+.c a {
   font-weight: 500;
-  font-size: 10px;
+  font-size: 10px !important;
   line-height: 109%;
   color: #B1ABAB;
 }
 
-.header span span {
+.c span {
   font-weight: 500;
   font-size: 10px;
   line-height: 109%;
@@ -237,6 +234,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.coin-border:hover {
+  background: var(--purple);
+  color: white;
 }
 
 .panel-list {
@@ -261,7 +264,11 @@
   font-weight: 300;
   font-size: 50px;
   line-height: 59px;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
+}
+
+.back-to-home {
+  margin-bottom: 35px;
 }
 
 .admin-login-grid {

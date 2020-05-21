@@ -39,7 +39,7 @@ class Filter extends React.Component {
   render = () => {
     return (
       <div className='homepage'>
-        <Header />
+        <Header header='Homepage'/>
         <SearchBar advanced={true} />
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <div className='filter-grid'>

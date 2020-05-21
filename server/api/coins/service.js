@@ -24,11 +24,54 @@ module.exports = {
     )
   },
 
-  updateCoin: (data, id, func) => {
+  addCoinToDB: (data, func) => {
+    console.log(data.body, data.files)
     pool.query(
-      `UPDATE final.coins SET name = ?, value = ?, year = ?, price = ?, country = ?, metal = ?, shortDescription = ?, fullDescription = ?, quality = ?, weight = ?
+      `INSERT INTO final.coins (name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, obverseLink, reverseLink, coinType)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        data.body.name, 
+        data.body.value, 
+        data.body.year, 
+        data.body.price, 
+        data.body.country, 
+        data.body.metal, 
+        data.body.shortDescription, 
+        data.body.fullDescription, 
+        data.body.quality, 
+        data.body.weight, 
+        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
+        `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
+        data.body.coinType
+      ],
+      (err, res) => {
+        if (err) return func(err);
+        return func(null, res);
+      }
+    )
+  },
+
+  updateCoin: (data, id, func) => {
+    console.log(data.body, data.files)
+    pool.query(
+      `UPDATE final.coins SET name = ?, value = ?, year = ?, price = ?, country = ?, metal = ?, shortDescription = ?, fullDescription = ?, 
+      quality = ?, weight = ?, obverseLink = ?, reverseLink = ?, coinType = ?
       WHERE id = ${id}`,
-      [data.name, data.value, data.year, data.price, data.country, data.metal, data.shortDescription, data.fullDescription, data.quality, data.weight],
+      [
+        data.body.name, 
+        data.body.value, 
+        data.body.year, 
+        data.body.price, 
+        data.body.country, 
+        data.body.metal, 
+        data.body.shortDescription, 
+        data.body.fullDescription, 
+        data.body.quality, 
+        data.body.weight, 
+        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
+        `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
+        data.body.coinType
+      ],
       (err, res) => {
         if (err) return func(err);
         return func(null, res);
@@ -51,32 +94,6 @@ module.exports = {
     pool.query(
       `SELECT * FROM final.coins WHERE coinType = '${type}'`,
       [],
-      (err, res) => {
-        if (err) return func(err);
-        return func(null, res);
-      }
-    )
-  },
-
-  addCoinToDB: (data, func) => {
-    pool.query(
-      `INSERT INTO final.coins (name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, obverseLink, reverseLink, coinType)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        data.body.name, 
-        data.body.value, 
-        data.body.year, 
-        data.body.price, 
-        data.body.country, 
-        data.body.metal, 
-        data.body.shortDescription, 
-        data.body.fullDescription, 
-        data.body.quality, 
-        data.body.weight, 
-        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
-        `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
-        data.body.coinType
-      ],
       (err, res) => {
         if (err) return func(err);
         return func(null, res);

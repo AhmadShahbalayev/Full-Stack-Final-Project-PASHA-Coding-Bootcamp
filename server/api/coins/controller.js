@@ -32,6 +32,7 @@ module.exports = {
 
   updateCoin: (request, response) => {
     const id = request.params.id;
+    console.log(request.body)
     updateCoin(request.body, id, (err, res) => {
       if (err) return console.log(err);
       return response.json(res);

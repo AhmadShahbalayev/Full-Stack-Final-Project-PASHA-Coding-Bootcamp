@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getCoins } from '../../redux/actions';
-import HeaderOfCoins from '../header-of-list-of-coins/HeaderOfCoins';
+import Header from '../homepage/Header';
 import SearchBar from '../search-bar/SearchBar';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ class ListOfCoins extends React.Component {
   render = () => {
     return (
       <div className='homepage'>
-        <HeaderOfCoins />
+        <Header header={'List of coins'} url={true} />
         <SearchBar advanced={true} />
         <section className='list-of-coins'>
           {this.renderList()}
