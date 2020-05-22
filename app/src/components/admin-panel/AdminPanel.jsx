@@ -53,7 +53,7 @@ class AdminPanel extends React.Component {
       return (
         <div className='admin-panel-container'>
           {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
-          <div>
+          <div className='admin-panel-header'>
             <h1 className='admin-header'>Admin panel</h1>
             <div className='back-to-home'>
               <span className='c'>

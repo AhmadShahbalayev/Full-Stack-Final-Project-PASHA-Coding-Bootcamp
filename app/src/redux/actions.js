@@ -13,32 +13,6 @@ export const LOGOUT = 'LOGOUT';
 
 export const loading = () => { return { type: LOADING } }
 
-// Get Coins:
-
-export const getAllCoins = () => async dispatch => {
-  await fetch(`/coins`)
-    .then(res => res.json())
-    .then(res => dispatch({ type: GET_ALL_COINS, payload: res }))
-}
-
-export const getCoins = (type) => async dispatch => {
-  await fetch(`/catalog/${type}`)
-    .then(res => res.json())
-    .then(res => dispatch({ type: GET_COINS, payload: res }))
-}
-
-export const getCoinById = (id) => async dispatch => {
-  await fetch(`/coins/${id}`)
-    .then(res => res.json())
-    .then(res => dispatch({ type: GET_COIN_BY_ID, payload: res }));
-}
-
-export const searchCoin = (value) => async dispatch => {
-  await fetch(`/search?search=${value}`)
-    .then(res => res.json())
-    .then(res => dispatch({ type: SEARCH_COIN, payload: res }))
-}
-
 // Admin panel: 
 
 export const login = (values) => async dispatch => {
@@ -67,6 +41,32 @@ export const logout = () => {
     type: LOGOUT,
     payload: false
   }
+}
+
+// Get Coins:
+
+export const getAllCoins = () => async dispatch => {
+  await fetch(`/coins`)
+    .then(res => res.json())
+    .then(res => dispatch({ type: GET_ALL_COINS, payload: res }))
+}
+
+export const getCoins = (type) => async dispatch => {
+  await fetch(`/catalog/${type}`)
+    .then(res => res.json())
+    .then(res => dispatch({ type: GET_COINS, payload: res }))
+}
+
+export const getCoinById = (id) => async dispatch => {
+  await fetch(`/coins/${id}`)
+    .then(res => res.json())
+    .then(res => dispatch({ type: GET_COIN_BY_ID, payload: res }));
+}
+
+export const searchCoin = (value) => async dispatch => {
+  await fetch(`/search?search=${value}`)
+    .then(res => res.json())
+    .then(res => dispatch({ type: SEARCH_COIN, payload: res }))
 }
 
 const createFormData = (val) => {

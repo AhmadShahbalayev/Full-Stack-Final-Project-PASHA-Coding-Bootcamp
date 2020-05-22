@@ -4,6 +4,7 @@
 
 :root {
   --purple: #833AE0;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8)
 }
 
 /* Resets */
@@ -84,7 +85,7 @@
 /* Homepage / Main */
 
 .search-bar-box {
-  width: 100%;
+  width: 815px;
   height: 93px;
   min-width: 540px;
   margin-bottom: 40px; 
@@ -449,6 +450,7 @@
   background: rgba(196, 196, 196, 0.5);
   padding: 19px 43px;
   position: relative;
+  box-shadow: var(--shadow);
 }
 
 .info-textarea h1 {
@@ -529,12 +531,18 @@
 
 .advanced-filter {
   cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .modal-filter {
-  padding: 30px 0;
+  padding: 15px;
   background: white;
   z-index: 99;
+  box-shadow: var(--shadow);
+  margin-top: 10px;
 }
 
 .from-to {

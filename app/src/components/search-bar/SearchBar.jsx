@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
   }
   findCoins = () => {
     this.props.searchCoin(this.state.value);
+    this.setState({ modal: false })
   }
   render = () => {
     return (

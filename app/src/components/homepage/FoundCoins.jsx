@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 class FoundCoins extends React.Component {
   render = () => {
     return (
-      <div>
+      <div className='list-of-coins'>
         {this.props.allCoins.map(i => {
-          let URL = i.obverseLink;
+          let URL = `/images/${i.obverseLink}`;
           let ALT = `icon_of_${i.name}`;
           let ID = `/coins/${i.id}`;
           return (
-            <div key={i.id}>
+          <div key={i.id}>
               <div className='coin-box'>
                 <Link to={ID} style={{ textDecoration: 'none' }}>
                   <img src={URL} alt={ALT} />

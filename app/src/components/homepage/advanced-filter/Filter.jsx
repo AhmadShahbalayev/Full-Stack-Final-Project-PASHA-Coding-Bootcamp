@@ -30,7 +30,7 @@ class Filter extends React.Component {
     )
   }
   onSubmit = (values) => {
-    this.props.adminCE(values);
+    console.log('Filter section is under development...')
   }
   render = () => {
     return (
