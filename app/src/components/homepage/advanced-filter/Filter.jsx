@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { getAllCoins } from '../../../redux/actions';
-import Header from '../Header';
-import SearchBar from '../../search-bar/SearchBar';
 
 class Filter extends React.Component {
   componentDidMount = () => {
@@ -12,7 +10,6 @@ class Filter extends React.Component {
   selectField = ({ label, input, meta: { touched, error, warning } }) => {
     let options = this.props.allCoins.map(op => op[input.name]);
     let unique = [...new Set(options)];
-    delete input.value
     return (
       <div>
         <label>{label}</label>
@@ -25,7 +22,6 @@ class Filter extends React.Component {
     )
   }
   inputField = ({ label, input, meta: { touched, error, warning } }) => {
-    delete input.value
     return (
       <div>
         <label>{label}</label>
@@ -38,18 +34,23 @@ class Filter extends React.Component {
   }
   render = () => {
     return (
-      <div className='homepage'>
-        <Header header='Homepage'/>
-        <SearchBar advanced={true} />
+      <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <div className='filter-grid'>
             <Field label='Issuing country' name='country' component={this.selectField} />
-            <Field type='text' name='value' label='from' component={this.inputField} />
-            <Field type='text' name='year' label='to' component={this.inputField} />
+            <div className='from-to'>
+              <p>Year of issue</p>
+              <Field label='from' type='text' name='year' component={this.inputField} />
+              <Field label='to' type='text' name='year' component={this.inputField} />
+            </div>
             <Field label='Metal' name='metal' component={this.selectField} />
-            <Field type='text' name='price' label='from' component={this.inputField} />
-            <Field type='text' name='country' label='to' component={this.inputField} />
+            <div className='from-to'>
+              <p>Price</p>
+              <Field label='from' type='text' name='price' component={this.inputField} />
+              <Field label='to' type='text' name='price' component={this.inputField} />
+            </div>
             <Field label='Quality of the coin' name='quality' component={this.inputField} />
+            <button className='login-btn filter-btn'>Apply filter</button>
           </div>
         </form>
       </div>

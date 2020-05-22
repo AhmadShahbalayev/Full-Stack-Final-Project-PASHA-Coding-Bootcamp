@@ -8,17 +8,17 @@ class Catalog extends React.Component {
         <Link to='/catalog/memorial'>
           <h2 className='catalog-header'>Bullion coins</h2>
           <p className='show-all'>Show all ></p>
-          <img className='m-catalog-img' src='http://localhost:5000/images/South_Vietnamese_Dong_1.png' alt="bullion-coin"/>
+          <img className='m-catalog-img' src='/images/South_Vietnamese_Dong_1.png' alt="bullion-coin"/>
         </Link>
         <Link to='/catalog/exclusive'>
           <h2 className='catalog-header'>Exclusive coins</h2>
           <p  className='show-all'>Show all ></p>
-          <img className='m-catalog-img' src='http://localhost:5000/images/ISK_2.png' alt="exclusive-coin"/>
+          <img className='m-catalog-img' src='/images/ISK_2.png' alt="exclusive-coin"/>
         </Link>
         <Link to='/catalog/invested'>
           <h2 className='catalog-header'>Commemorative coins</h2>
           <p  className='show-all'>Show all ></p>
-          <img className='m-catalog-img' src='http://localhost:5000/images/Looney_1.png' alt="invested-coin"/>
+          <img className='m-catalog-img' src='/images/Looney_1.png' alt="invested-coin"/>
         </Link>
       </section>
     );

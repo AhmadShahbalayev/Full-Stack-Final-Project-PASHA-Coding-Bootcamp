@@ -11,7 +11,7 @@ class ListOfCoins extends React.Component {
   }
   renderList = () => {
     return this.props.coins.map(i => {
-      let URL = i.obverseLink;
+      let URL = `/images/${i.obverseLink}`;
       let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
       return (

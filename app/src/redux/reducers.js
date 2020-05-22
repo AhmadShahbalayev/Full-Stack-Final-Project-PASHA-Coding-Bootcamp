@@ -1,12 +1,22 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { LOADING, GET_ALL_COINS, GET_COINS, GET_COIN_BY_ID, LOGIN, DELETE_COIN, SEARCH_COIN } from './actions';
+import {
+  LOADING,
+  GET_ALL_COINS,
+  GET_COINS,
+  GET_COIN_BY_ID,
+  LOGIN,
+  DELETE_COIN,
+  SEARCH_COIN,
+  LOGOUT,
+  UPDATE_COIN
+} from './actions';
 
 const defaultStore = {
   allCoins: [],
   coins: [],
-  loading: false,
   coin: {},
+  loading: false,
   found: false
 }
 
@@ -35,7 +45,7 @@ const reducer = (store = defaultStore, action) => {
     case DELETE_COIN:
       return {
         ...store,
-        allCoins: store.allCoins.filter(item => item.id !== action.payload)
+        allCoins: store.allCoins.filter(item => +item.id !== +action.payload)
       }
     case SEARCH_COIN:
       if (action.payload) {
@@ -45,6 +55,20 @@ const reducer = (store = defaultStore, action) => {
           coins: action.payload,
           found: true
         }
+      } else {
+        break;
+      }
+    case LOGOUT:
+      return {
+        ...store,
+        status: action.payload
+      }
+    case UPDATE_COIN: 
+      let newCoins = store.allCoins.filter(coin => +coin.id !== action.payload.id);
+      newCoins.push(action.payload)
+      return {
+        ...store,
+        allCoins: newCoins
       }
     default:
       return store;

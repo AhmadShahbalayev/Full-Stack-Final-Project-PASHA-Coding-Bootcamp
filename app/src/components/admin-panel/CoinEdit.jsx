@@ -4,19 +4,18 @@ import { getCoinById, updateCoin } from '../../redux/actions';
 import AdminCE from './AdminCE';
 
 class CoinEdit extends React.Component {
-  UNSAFE_componentWillMount = () => {
+  componentDidMount = () => {
     let id = this.props.match.params.id;
     this.props.getCoinById(id)
   }
   onSubmit = (values) => {
     let id = this.props.match.params.id;
-    const { obverseLink, reverseLink } = this.props.coin;
-    this.props.updateCoin(values, id, obverseLink, reverseLink);
+    this.props.updateCoin(values, id);
   }
   render = () => {
     const id = this.props.match.params.id;
     const nextID = this.props.coin.id;
-    if (id == nextID) {
+    if (+id === +nextID) {
       return (
         <div>
           <AdminCE

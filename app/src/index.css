@@ -19,22 +19,14 @@
 
 .homepage {
   padding: 52px;
+  display: flex;
+  flex-direction: column;
 }
 
 .homepage a {
   color: black;
   font-style: normal;
   font-weight: 300;
-}
-
-.homepage a i {
-  font-size: 10px;
-  margin-left: 5px;
-  margin-bottom: 2px;
-}
-
-.toggle {
-  transform: rotate(180deg);
 }
 
 /* Homepage / Header */
@@ -92,8 +84,9 @@
 /* Homepage / Main */
 
 .search-bar-box {
-  width: 524px;
+  width: 100%;
   height: 93px;
+  min-width: 540px;
   margin-bottom: 40px; 
   display: flex;
   flex-direction: column;
@@ -172,11 +165,22 @@
 
 /* Admin panel */
 
+.admin-panel-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 52px;
+}
+
+.admin-panel-list-box {
+  grid-column: 1 / -1;
+}
+
 .admin-panel {
   padding: 52px;
 }
 
 .admin-panel-list {
+  width: 674px;
   display: flex;
   justify-content: space-between;
 }
@@ -243,10 +247,12 @@
 }
 
 .panel-list {
-  width: 674px;
-  height: 265px;
+  width: 100%;
+  height: 425px;
   overflow-y: scroll;
   overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(374px, 1fr));
 }
 
 .admin-btn-box {
@@ -264,11 +270,6 @@
   font-weight: 300;
   font-size: 50px;
   line-height: 59px;
-  margin-bottom: 10px;
-}
-
-.back-to-home {
-  margin-bottom: 35px;
 }
 
 .admin-login-grid {
@@ -361,8 +362,9 @@
 .add-login-and-logout-box {
   display: flex;
   justify-content: space-between;
-  width: 510px;
+  width: 410px;
   align-items: center;
+  justify-self: right;
 }
 
 .logout {
@@ -378,10 +380,9 @@
 /* List of coins */
 
 .list-of-coins {
-  width: 898px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(374px, 1fr));
 }
 
 .coin-box {
@@ -515,7 +516,7 @@
 .filter-grid {
   display: grid;
   width: 789px;
-  grid-template-columns: repeat(3, minmax(374px, 1fr));
+  grid-template-columns: repeat(2, minmax(374px, 1fr));
   grid-auto-flow: dense;
   gap: 30px;
 }
@@ -524,6 +525,45 @@
   width: 100%;
   height: 48px;
   border: 1px solid black;
+}
+
+.advanced-filter {
+  cursor: pointer;
+}
+
+.modal-filter {
+  padding: 30px 0;
+  background: white;
+  z-index: 99;
+}
+
+.from-to {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.from-to div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.from-to p {
+  grid-column: 1 / -1;
+}
+
+.from-to input {
+  margin-right: 15px;
+}
+
+.from-to label {
+  display: inline-block;
+  margin: auto 15px auto 0;
+}
+
+.filter-btn {
+  align-self: center;
+  justify-self: right;
+  margin: 15px;
 }
 
 /* Modal window */

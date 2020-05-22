@@ -30,10 +30,16 @@ module.exports = {
     })
   },
 
+  addCoinToDB: (request, response) => {
+    addCoinToDB(request, (err, res) => {
+      if (err) return console.log(err);
+      return response.json(res);
+    })
+  },
+
   updateCoin: (request, response) => {
     const id = request.params.id;
-    console.log(request.body)
-    updateCoin(request.body, id, (err, res) => {
+    updateCoin(request, id, (err, res) => {
       if (err) return console.log(err);
       return response.json(res);
     })
@@ -50,13 +56,6 @@ module.exports = {
   getCatalog: (request, response) => {
     const type = request.params.type;
     getCatalog(type, (err, res) => {
-      if (err) return console.log(err);
-      return response.json(res);
-    })
-  },
-
-  addCoinToDB: (request, response) => {
-    addCoinToDB(request, (err, res) => {
       if (err) return console.log(err);
       return response.json(res);
     })

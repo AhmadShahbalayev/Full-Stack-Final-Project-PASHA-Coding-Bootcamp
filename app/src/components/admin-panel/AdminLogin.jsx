@@ -15,7 +15,7 @@ class AdminLogin extends React.Component {
     e.preventDefault();
     const { username, password } = this.state;
     this.props.login({ username, password });
-    if (this.props.status) this.showError();
+    if (!this.props.status) this.showError();
   }
   showError = () => {
     this.setState({ visibility: true })

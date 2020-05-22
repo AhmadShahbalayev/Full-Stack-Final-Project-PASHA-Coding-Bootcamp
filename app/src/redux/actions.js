@@ -7,32 +7,34 @@ export const ADMIN_CE = 'ADMIN_CE';
 export const GET_COIN_BY_ID = 'GET_COIN_BY_ID';
 export const LOGIN = 'LOGIN';
 export const DELETE_COIN = 'DELETE_COIN';
+export const UPDATE_COIN = 'UPDATE_COIN';
 export const SEARCH_COIN = 'SEARCH_COIN';
+export const LOGOUT = 'LOGOUT';
 
 export const loading = () => { return { type: LOADING } }
 
 // Get Coins:
 
 export const getAllCoins = () => async dispatch => {
-  await fetch(`http://localhost:5000/coins`)
+  await fetch(`/coins`)
     .then(res => res.json())
     .then(res => dispatch({ type: GET_ALL_COINS, payload: res }))
 }
 
 export const getCoins = (type) => async dispatch => {
-  await fetch(`http://localhost:5000/catalog/${type}`)
+  await fetch(`/catalog/${type}`)
     .then(res => res.json())
     .then(res => dispatch({ type: GET_COINS, payload: res }))
 }
 
 export const getCoinById = (id) => async dispatch => {
-  await fetch(`http://localhost:5000/coins/${id}`)
+  await fetch(`/coins/${id}`)
     .then(res => res.json())
     .then(res => dispatch({ type: GET_COIN_BY_ID, payload: res }));
 }
 
 export const searchCoin = (value) => async dispatch => {
-  await fetch(`http://localhost:5000/search?search=${value}`)
+  await fetch(`/search?search=${value}`)
     .then(res => res.json())
     .then(res => dispatch({ type: SEARCH_COIN, payload: res }))
 }
@@ -40,7 +42,7 @@ export const searchCoin = (value) => async dispatch => {
 // Admin panel: 
 
 export const login = (values) => async dispatch => {
-  await fetch('http://localhost:5000/admin',
+  await fetch('/admin',
     {
       method: 'POST',
       body: JSON.stringify(values),
@@ -60,64 +62,55 @@ export const login = (values) => async dispatch => {
     })
 }
 
-export const createCoin = (values) => async dispatch => {
+export const logout = () => {
+  return {
+    type: LOGOUT,
+    payload: false
+  }
+}
+
+const createFormData = (val) => {
   let formData = new FormData();
-  formData.append('name', values.name);
-  formData.append('value', values.value);
-  formData.append('year', values.year);
-  formData.append('price', values.price);
-  formData.append('country', values.country);
-  formData.append('metal', values.metal);
-  formData.append('shortDescription', values.shortDescription);
-  formData.append('fullDescription', values.fullDescription);
-  formData.append('quality', values.quality);
-  formData.append('weight', values.weight);
-  values.obverseLink
-  ? formData.append('obverseLink', values.obverseLink[0])
-  : formData.append('obverseLink', null)
-  values.reverseLink
-  ? formData.append('reverseLink', values.reverseLink[0])
-  : formData.append('reverseLink', null)
-  formData.append('coinType', values.coinType);
-  await fetch('http://localhost:5000/coins', {
+  formData.append('name', val.name);
+  formData.append('value', val.value);
+  formData.append('year', val.year);
+  formData.append('price', val.price);
+  formData.append('country', val.country);
+  formData.append('metal', val.metal);
+  formData.append('shortDescription', val.shortDescription);
+  formData.append('fullDescription', val.fullDescription);
+  formData.append('quality', val.quality);
+  formData.append('weight', val.weight);
+  formData.append('obverseLink', val.obverseLink[0])
+  formData.append('reverseLink', val.reverseLink[0])
+  formData.append('coinType', val.coinType);
+  return formData;
+}
+
+export const createCoin = (values) => async dispatch => {
+  await fetch('/coins', {
     method: 'POST',
-    body: formData
+    body: createFormData(values)
   }).then(res => res.json()).then(res => {
     dispatch({ type: ADMIN_CE, payload: res.data })
     history.push('/admin/panel');
   })
 }
 
-export const updateCoin = (values, id, obverseLink, reverseLink) => async dispatch => {
-  let formData = new FormData();
-  formData.append('name', values.name);
-  formData.append('value', values.value);
-  formData.append('year', values.year);
-  formData.append('price', values.price);
-  formData.append('country', values.country);
-  formData.append('metal', values.metal);
-  formData.append('shortDescription', values.shortDescription);
-  formData.append('fullDescription', values.fullDescription);
-  formData.append('quality', values.quality);
-  formData.append('weight', values.weight);
-  values.obverseLink
-    ? formData.append('obverseLink', values.obverseLink[0])
-    : formData.append('obverseLink', obverseLink);
-  values.reverseLink
-    ? formData.append('reverseLink', values.reverseLink[0])
-    : formData.append('reverseLink', reverseLink);
-  formData.append('coinType', values.coinType);
-  await fetch(`http://localhost:5000/coins/${id}`,
+export const updateCoin = (values, id) => async dispatch => {
+  await fetch(`/coins/${id}`,
     {
       method: 'PUT',
-      body: formData,
+      body: createFormData(values),
     }
-  ).then(res => res.json());
-  history.push('/admin/panel');
+  ).then(res => {
+    dispatch({ type: UPDATE_COIN, payload: { ...values, id} })
+    history.push('/admin/panel')
+  })
 }
 
 export const deleteCoin = (id) => async dispatch => {
-  await fetch(`http://localhost:5000/delete-coin/${id}`, { method: 'DELETE' })
+  await fetch(`/delete-coin/${id}`, { method: 'DELETE' })
     .then(res => res.json());
   dispatch({ type: DELETE_COIN, payload: id })
 }

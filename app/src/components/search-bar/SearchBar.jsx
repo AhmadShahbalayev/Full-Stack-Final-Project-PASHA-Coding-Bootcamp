@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { searchCoin } from '../../redux/actions';
+import Filter from '../homepage/advanced-filter/Filter';
 
 class SearchBar extends React.Component {
   state = {
     value: '',
-    modal: true
+    modal: false
   }
   change = () => {
     this.setState({ modal: !this.state.modal })
@@ -25,7 +25,8 @@ class SearchBar extends React.Component {
           <input type="text" value={this.state.value} onChange={this.getValue} />
           <button onClick={this.findCoins}>Search</button>
         </div>
-        {this.props.advanced ? <Link onClick={this.change} to={this.state.modal ? '/advanced-filter' : '/'}>Advanced filter<i className="fas fa-chevron-down"></i></Link> : null}
+        {this.props.advanced ? <span className='advanced-filter' onClick={this.change}>Advanced filter ></span> : null}
+        {this.state.modal ? <div className='modal-filter'><Filter /></div> : null}
       </section>
     );
   }

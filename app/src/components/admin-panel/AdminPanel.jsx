@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from '../search-bar/SearchBar';
 import { connect } from 'react-redux';
-import { getAllCoins, deleteCoin } from '../../redux/actions';
+import { getAllCoins, deleteCoin, logout } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import history from '../../history';
 import ModalWindow from './ModalWindow';
@@ -19,7 +19,7 @@ class AdminPanel extends React.Component {
   }
   renderList = () => {
     return this.props.allCoins.map(i => {
-      let URL = i.obverseLink;
+      let URL = `/images/${i.obverseLink}`;
       let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
       return (
@@ -45,26 +45,24 @@ class AdminPanel extends React.Component {
   }
   logout = () => {
     localStorage.removeItem('LoggedIn');
+    this.props.logout();
     history.push('/');
   }
   render = () => {
     if (this.props.status) {
       return (
-        <div style={{ padding: '52px' }}>
+        <div className='admin-panel-container'>
           {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
-          <h1 className='admin-header'>Admin panel</h1>
-          <div className='back-to-home'>
-            <span className='c'>
-              <Link to='/'>Homepage</Link>
-              <span> &mdash; </span>
-              <span>Admin panel</span>
-            </span>
-          </div>
-          <SearchBar />
-          <div className='admin-panel-list-box'>
-            <div className='panel-list'>
-              {this.renderList()}
+          <div>
+            <h1 className='admin-header'>Admin panel</h1>
+            <div className='back-to-home'>
+              <span className='c'>
+                <Link to='/'>Homepage</Link>
+                <span> &mdash; </span>
+                <span>Admin panel</span>
+              </span>
             </div>
+          <SearchBar />
           </div>
           <div className='add-login-and-logout-box'>
             <div className='add-coin'>
@@ -72,6 +70,11 @@ class AdminPanel extends React.Component {
               <button onClick={() => history.push('/admin/create')}>Add new coin</button>
             </div>
             <button className='logout' onClick={this.logout}>Logout</button>
+          </div>
+          <div className='admin-panel-list-box'>
+            <div className='panel-list'>
+              {this.renderList()}
+            </div>
           </div>
         </div>
       );
@@ -92,4 +95,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getAllCoins, deleteCoin })(AdminPanel);
+export default connect(mapStateToProps, { getAllCoins, deleteCoin, logout })(AdminPanel);

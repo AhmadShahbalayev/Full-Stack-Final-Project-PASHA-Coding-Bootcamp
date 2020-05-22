@@ -46,7 +46,7 @@ router.post('/coins', upload.fields([{name: 'obverseLink'}, {name: 'reverseLink'
 
 // PUTS: 
 
-router.put('/coins/:id', updateCoin);
+router.put('/coins/:id', upload.fields([{name: 'obverseLink'}, {name: 'reverseLink'}]), updateCoin);
 
 // DELETES: 
 

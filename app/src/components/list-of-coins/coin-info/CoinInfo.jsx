@@ -8,17 +8,15 @@ class CoinInfo extends React.Component {
     this.props.getCoinById(id);
   }
   render = () => {
-    const { name, fullDescription, country, metal, quality, value, year, weight, price} = this.props.coin;
-    let nameInDB = `${name}`;
-    nameInDB = nameInDB.replace(/\s+/g, "_");
-    const URL1 = `http://localhost:5000/images/${nameInDB}_1.png`
-    const URL2 = `http://localhost:5000/images/${nameInDB}_2.png`
+    const { name, fullDescription, country, metal, quality, value, year, weight, price, obverseLink, reverseLink} = this.props.coin;
+    let URL1 = `/images/${obverseLink}`;
+    let URL2 = `/images/${reverseLink}`;
     return (
       <div className="info-page">
         <div className='info-box'>
           <div className="img-box">
-            <img src={URL1} alt={`${nameInDB}_obverse`}/>
-            <img src={URL2} alt={`${nameInDB}reverse`}/>
+            <img src={URL1} alt={`${name}_obverse`}/>
+            <img src={URL2} alt={`${name}_reverse`}/>
           </div>
           <div className="info-textarea">
             <h1>{name}</h1>

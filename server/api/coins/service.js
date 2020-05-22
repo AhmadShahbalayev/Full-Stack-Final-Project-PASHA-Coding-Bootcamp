@@ -25,7 +25,6 @@ module.exports = {
   },
 
   addCoinToDB: (data, func) => {
-    console.log(data.body, data.files)
     pool.query(
       `INSERT INTO final.coins (name, value, year, price, country, metal, shortDescription, fullDescription, quality, weight, obverseLink, reverseLink, coinType)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -40,8 +39,8 @@ module.exports = {
         data.body.fullDescription, 
         data.body.quality, 
         data.body.weight, 
-        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
-        `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
+        data.files['obverseLink'][0].filename,
+        data.files['reverseLink'][0].filename,
         data.body.coinType
       ],
       (err, res) => {
@@ -52,11 +51,9 @@ module.exports = {
   },
 
   updateCoin: (data, id, func) => {
-    console.log(data.body, data.files)
     pool.query(
       `UPDATE final.coins SET name = ?, value = ?, year = ?, price = ?, country = ?, metal = ?, shortDescription = ?, fullDescription = ?, 
-      quality = ?, weight = ?, obverseLink = ?, reverseLink = ?, coinType = ?
-      WHERE id = ${id}`,
+      quality = ?, weight = ?, obverseLink = ?, reverseLink = ?, coinType = ? WHERE id = ${id}`,
       [
         data.body.name, 
         data.body.value, 
@@ -68,8 +65,8 @@ module.exports = {
         data.body.fullDescription, 
         data.body.quality, 
         data.body.weight, 
-        `http://localhost:5000/images/${data.files['obverseLink'][0].filename}`, // [data.files]
-        `http://localhost:5000/images/${data.files['reverseLink'][0].filename}`,
+        data.files['obverseLink'][0].filename,
+        data.files['reverseLink'][0].filename,
         data.body.coinType
       ],
       (err, res) => {
