@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import history from '../../history';
 
 class Header extends React.Component {
   render = () => {
     return (
       <header className='header'>
-        <h1>{this.props.header}</h1>
+        <h1 onClick={() => history.push('/')}>{this.props.header}</h1>
         <Link to='/admin'>Admin panel</Link>
         {this.props.url
           ?

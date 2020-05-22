@@ -124,7 +124,8 @@ module.exports = {
 
   searchCoin: (value, func) => {
     pool.query(
-      `SELECT * FROM final.coins WHERE name LIKE '%${value}%'
+      `SELECT * FROM final.coins 
+      WHERE name LIKE '%${value}%'
       OR value LIKE '%${value}%'
       OR year LIKE '%${value}%'
       OR price LIKE '%${value}%'
