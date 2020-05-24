@@ -144,7 +144,6 @@ module.exports = {
 
   searchAndFilter: (data, func) => {
     delete data.conditions.visibility;
-    console.log(data.conditions)
     let { country, metal, quality, priceFrom, priceTo, yearFrom, yearTo } = data.conditions;
     let values = data.conditions;
 

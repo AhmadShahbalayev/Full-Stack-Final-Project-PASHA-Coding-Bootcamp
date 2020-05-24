@@ -12,6 +12,7 @@ export const SEARCH_COIN = 'SEARCH_COIN';
 export const LOGOUT = 'LOGOUT';
 export const SEARCH_AND_FILTER = 'SEARCH_AND_FILTER';
 export const GET_SELECT_VALUES = 'GET_SELECT_VALUES';
+export const CHANGE_FOUND = 'CHANGE_FOUND';
 
 export const loading = () => { return { type: LOADING } }
 
@@ -141,4 +142,11 @@ export const getSelectValues = () => async dispatch => {
         dispatch({ type: GET_SELECT_VALUES, payload: res })
       }
     })
+}
+
+export const changeFound = () => {
+  return {
+    type: CHANGE_FOUND,
+    payload: false
+  }
 }

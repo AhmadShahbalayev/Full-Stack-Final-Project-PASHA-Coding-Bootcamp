@@ -10,7 +10,8 @@ import {
   LOGOUT,
   UPDATE_COIN,
   SEARCH_AND_FILTER,
-  GET_SELECT_VALUES
+  GET_SELECT_VALUES,
+  CHANGE_FOUND
 } from './actions';
 
 const defaultStore = {
@@ -94,6 +95,11 @@ const reducer = (store = defaultStore, action) => {
         countries,
         metals,
         qualities
+      }
+    case CHANGE_FOUND:
+      return{
+        ...store,
+        found: false
       }
     default:
       return store;

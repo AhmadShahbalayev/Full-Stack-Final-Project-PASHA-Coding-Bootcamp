@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import history from '../../history';
+import { connect } from 'react-redux';
+import { changeFound } from '../../redux/actions';
 
 class Header extends React.Component {
+  returnToHome = () => {
+    this.props.changeFound();
+    history.push('/');
+  }
   render = () => {
     return (
       <header className='header'>
-        <h1 onClick={() => history.push('/')}>{this.props.header}</h1>
+        <h1 onClick={this.returnToHome}>{this.props.header}</h1>
         <Link to='/admin'>Admin panel</Link>
         {this.props.url
           ?
@@ -21,4 +27,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default connect(null, { changeFound })(Header);
