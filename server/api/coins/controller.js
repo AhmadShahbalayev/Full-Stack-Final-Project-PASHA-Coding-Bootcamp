@@ -7,7 +7,9 @@ const {
   addCoinToDB,
   addAdmin,
   getAdmin,
-  searchCoin
+  searchCoin,
+  searchAndFilter,
+  getSelectValues
 } = require('./service');
 
 const bcrypt = require('bcrypt');
@@ -81,7 +83,7 @@ module.exports = {
   },
 
   login: async (request, response) => {
-    getAdmin( async (err, res) => {
+    getAdmin(async (err, res) => {
       if (err) return console.log(err);
       let admins = JSON.parse(JSON.stringify(res));
       let admin = admins.find(admin => admin.username === request.body.username);
@@ -100,6 +102,20 @@ module.exports = {
   searchCoin: (request, response) => {
     const value = request.query.search;
     searchCoin(value, (err, res) => {
+      if (err) return console.log(err);
+      return response.json(res);
+    })
+  },
+
+  searchAndFilter: (request, response) => {
+    searchAndFilter(request.body, (err, res) => {
+      if (err) return console.log(err);
+      return response.json(res);
+    })
+  },
+
+  getSelectValues: (request, response) => {
+    getSelectValues((err, res) => {
       if (err) return console.log(err);
       return response.json(res);
     })

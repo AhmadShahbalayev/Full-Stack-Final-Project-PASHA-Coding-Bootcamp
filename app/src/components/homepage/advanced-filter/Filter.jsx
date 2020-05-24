@@ -1,56 +1,81 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { getAllCoins } from '../../../redux/actions';
+import { getAllCoins, getSelectValues } from '../../../redux/actions';
 
 class Filter extends React.Component {
   componentDidMount = () => {
-    this.props.getAllCoins();
+    this.props.getSelectValues();
   }
-  selectField = ({ label, input, meta: { touched, error, warning } }) => {
-    let options = this.props.allCoins.map(op => op[input.name]);
-    let unique = [...new Set(options)];
+  countryFiled = ({ label, input, meta: { touched, error, warning } }) => {
+    let uniqueCountries = [...new Set(this.props.countries)];
     return (
       <div>
         <label>{label}</label>
         <select {...input}>
-          {unique.map(op => {
-            return <option key={op} value={op}>{op}</option>
+          <option hidden></option>
+          {uniqueCountries.map(item => {
+            return <option key={item} value={item}>{item}</option>
           })}
         </select>
       </div>
     )
   }
-  inputField = ({ label, input, meta: { touched, error, warning } }) => {
+  qualityFiled = ({ label, input, meta: { touched, error, warning } }) => {
+    let uniqueQualities = [...new Set(this.props.qualities)];
     return (
       <div>
         <label>{label}</label>
-        <input {...input}></input>
+        <select {...input}>
+        <option hidden></option>
+        {uniqueQualities.map(item => {
+            return <option key={item} value={item}>{item}</option>
+          })}
+        </select>
       </div>
     )
   }
-  onSubmit = (values) => {
-    console.log('Filter section is under development...')
+  metalField = ({ label, input, meta: { touched, error, warning } }) => {
+    let uniqueMetals = [...new Set(this.props.metals)];
+    return (
+      <div>
+        <label>{label}</label>
+        <select {...input}>
+        <option hidden></option>
+        {uniqueMetals.map(item => {
+            return <option key={item} value={item}>{item}</option>
+          })}
+        </select>
+      </div>
+    )
+  }
+  numberField = ({ label, input, meta: { touched, error, warning } }) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <input style={{padding: '10px'}} type='number' {...input}></input>
+      </div>
+    )
   }
   render = () => {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <form>
           <div className='filter-grid'>
-            <Field label='Issuing country' name='country' component={this.selectField} />
+            <Field label='Issuing country' name='country' component={this.countryFiled} />
             <div className='from-to'>
               <p>Year of issue</p>
-              <Field label='from' type='text' name='year' component={this.inputField} />
-              <Field label='to' type='text' name='year' component={this.inputField} />
+              <Field label='from' name='yearFrom' component={this.numberField} />
+              <Field label='to' name='yearTo' component={this.numberField} />
             </div>
-            <Field label='Metal' name='metal' component={this.selectField} />
+            <Field label='Metal' name='metal' component={this.metalField} />
             <div className='from-to'>
               <p>Price</p>
-              <Field label='from' type='text' name='price' component={this.inputField} />
-              <Field label='to' type='text' name='price' component={this.inputField} />
+              <Field label='from' name='priceFrom' component={this.numberField} />
+              <Field label='to' name='priceTo' component={this.numberField} />
             </div>
-            <Field label='Quality of the coin' name='quality' component={this.inputField} />
-            <button className='login-btn filter-btn'>Apply filter</button>
+            <Field label='Quality of the coin' name='quality' component={this.qualityFiled} />
+            {/* <button type='submit' className='login-btn filter-btn'>Apply filter</button> */}
           </div>
         </form>
       </div>
@@ -60,8 +85,11 @@ class Filter extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    allCoins: state.reducer.allCoins
+    allCoins: state.reducer.allCoins,
+    countries: state.reducer.countries,
+    qualities: state.reducer.qualities,
+    metals: state.reducer.metals,
   }
 }
 
-export default reduxForm({ form: 'reduxFilter' })(connect(mapStateToProps, { getAllCoins })(Filter));
+export default reduxForm({ form: 'reduxFilter' })(connect(mapStateToProps, { getAllCoins, getSelectValues })(Filter));

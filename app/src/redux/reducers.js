@@ -7,9 +7,10 @@ import {
   GET_COIN_BY_ID,
   LOGIN,
   DELETE_COIN,
-  SEARCH_COIN,
   LOGOUT,
-  UPDATE_COIN
+  UPDATE_COIN,
+  SEARCH_AND_FILTER,
+  GET_SELECT_VALUES
 } from './actions';
 
 const defaultStore = {
@@ -17,7 +18,11 @@ const defaultStore = {
   coins: [],
   coin: {},
   loading: false,
-  found: false
+  found: false,
+  status: localStorage.getItem('LoggedIn'),
+  countries: [],
+  metals: [],
+  qualities: []
 }
 
 const reducer = (store = defaultStore, action) => {
@@ -47,7 +52,7 @@ const reducer = (store = defaultStore, action) => {
         ...store,
         allCoins: store.allCoins.filter(item => +item.id !== +action.payload)
       }
-    case SEARCH_COIN:
+    case SEARCH_AND_FILTER:
       if (action.payload) {
         return {
           ...store,
@@ -58,29 +63,38 @@ const reducer = (store = defaultStore, action) => {
       } else {
         break;
       }
+    case LOGIN:
+      return {
+        ...store,
+        status: action.payload
+      }
     case LOGOUT:
       return {
         ...store,
         status: action.payload
       }
-    case UPDATE_COIN: 
+    case UPDATE_COIN:
       let newCoins = store.allCoins.filter(coin => +coin.id !== action.payload.id);
       newCoins.push(action.payload)
       return {
         ...store,
         allCoins: newCoins
       }
-    default:
-      return store;
-  }
-}
-
-const loginReducer = (store = { status: localStorage.getItem('LoggedIn') }, action) => {
-  switch (action.type) {
-    case LOGIN:
+    case GET_SELECT_VALUES:
+      let countries = [];
+      let metals = [];
+      let qualities = [];
+      action.payload.forEach(item => {
+        countries.push(item.country);
+        metals.push(item.metal);
+        qualities.push(item.quality);
+      })
       return {
-        status: action.payload
-      };
+        ...store,
+        countries,
+        metals,
+        qualities
+      }
     default:
       return store;
   }
@@ -89,5 +103,4 @@ const loginReducer = (store = { status: localStorage.getItem('LoggedIn') }, acti
 export default combineReducers({
   reducer,
   form: formReducer,
-  loginReducer
 });

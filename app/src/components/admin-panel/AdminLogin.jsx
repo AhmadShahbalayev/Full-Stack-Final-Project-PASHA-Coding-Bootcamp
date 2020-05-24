@@ -34,7 +34,7 @@ class AdminLogin extends React.Component {
             <input onChange={this.getValue} name='password' value={this.state.password} type='password' id='password' />
           </div>
           <button className='login-btn' type='submit'>Sign in</button>
-          {this.state.visibility && <h3>Invalid username or passoword!</h3>}
+          {/* {this.state.visibility && <h3>Invalid username or passoword!</h3>} */} 
         </div>
       </form>
     );
@@ -43,7 +43,7 @@ class AdminLogin extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    status: state.loginReducer.status
+    status: state.reducer.status
   }
 };
 

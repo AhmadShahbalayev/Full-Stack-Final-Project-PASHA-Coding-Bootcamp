@@ -8,7 +8,9 @@ const {
   addAdmin,
   checkAdminRights,
   login,
-  searchCoin
+  searchCoin,
+  searchAndFilter,
+  getSelectValues
 } = require('./controller');
 
 const multer = require('multer');
@@ -37,12 +39,14 @@ router.get('/search', searchCoin);
 router.get('/coins', getCoins);
 router.get('/coins/:id', getCoinById);
 router.get('/catalog/:type', getCatalog);
+router.get('/get-select-values', getSelectValues);
 
 // POSTS:
 
 router.post('/add-admin', checkAdminRights, addAdmin);
 router.post('/admin', login);
 router.post('/coins', upload.fields([{name: 'obverseLink'}, {name: 'reverseLink'}]), addCoinToDB);
+router.post('/search-and-filter', searchAndFilter);
 
 // PUTS: 
 

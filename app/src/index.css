@@ -4,7 +4,7 @@
 
 :root {
   --purple: #833AE0;
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8)
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
 
 /* Resets */
@@ -50,6 +50,7 @@
   font-size: 10px !important;
   line-height: 109%;
   color: #B1ABAB;
+  margin: 0 !important;
 }
 
 .c span {
@@ -64,7 +65,7 @@
 }
 
 .header h1 {
-  width: 600px;
+  width: 300px;
   min-width: 300px;
   height: 50px;
   font-style: normal;
@@ -81,6 +82,7 @@
   line-height: 109%;
   justify-self: right;
   text-align: end;
+  margin: 30px 30px 0 0;
 }
 
 /* Homepage / Main */
@@ -272,6 +274,7 @@
   font-weight: 300;
   font-size: 50px;
   line-height: 59px;
+  margin-bottom: 20px;
 }
 
 .admin-login-grid {

@@ -55,14 +55,7 @@ class AdminPanel extends React.Component {
           {this.state.show ? <ModalWindow value={this.state.id} showOrHide={this.showOrHide} /> : null}
           <div className='admin-panel-header'>
             <h1 className='admin-header'>Admin panel</h1>
-            <div className='back-to-home'>
-              <span className='c'>
-                <Link to='/'>Homepage</Link>
-                <span> &mdash; </span>
-                <span>Admin panel</span>
-              </span>
-            </div>
-          <SearchBar />
+            <SearchBar />
           </div>
           <div className='add-login-and-logout-box'>
             <div className='add-coin'>
@@ -91,7 +84,7 @@ class AdminPanel extends React.Component {
 const mapStateToProps = (state) => {
   return {
     allCoins: state.reducer.allCoins,
-    status: state.loginReducer.status
+    status: state.reducer.status
   }
 }
 
