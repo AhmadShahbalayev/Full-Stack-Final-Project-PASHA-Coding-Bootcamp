@@ -1,7 +1,7 @@
 import history from '../history';
 
 export const GET_ALL_COINS = 'GET_ALL_COINS';
-export const GET_COINS = 'GET_COINS';
+export const GET_COINS_BY_TYPE = 'GET_COINS_BY_TYPE';
 export const ADMIN_CE = 'ADMIN_CE';
 export const GET_COIN_BY_ID = 'GET_COIN_BY_ID';
 export const LOGIN = 'LOGIN';
@@ -51,10 +51,10 @@ export const getAllCoins = () => async dispatch => {
     .then(res => dispatch({ type: GET_ALL_COINS, payload: res }))
 }
 
-export const getCoins = (type) => async dispatch => {
+export const getCoinsByType = (type) => async dispatch => {
   await fetch(`/catalog/${type}`)
     .then(res => res.json())
-    .then(res => dispatch({ type: GET_COINS, payload: res }))
+    .then(res => dispatch({ type: GET_COINS_BY_TYPE, payload: res }))
 }
 
 export const getCoinById = (id) => async dispatch => {

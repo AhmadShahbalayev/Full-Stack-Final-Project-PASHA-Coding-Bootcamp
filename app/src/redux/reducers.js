@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import {
   GET_ALL_COINS,
-  GET_COINS,
+  GET_COINS_BY_TYPE,
   GET_COIN_BY_ID,
   LOGIN,
   DELETE_COIN,
@@ -15,7 +15,7 @@ import {
 
 const defaultStore = {
   allCoins: [],
-  coins: [],
+  coinsByTpye: [],
   coin: {},
   found: false,
   status: localStorage.getItem('LoggedIn'),
@@ -31,10 +31,10 @@ const reducer = (store = defaultStore, action) => {
         ...store,
         allCoins: action.payload
       }
-    case GET_COINS:
+    case GET_COINS_BY_TYPE:
       return {
         ...store,
-        coins: action.payload
+        coinsByTpye: action.payload
       }
     case GET_COIN_BY_ID:
       return {

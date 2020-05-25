@@ -1,9 +1,10 @@
+// Libraries:
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // Tools: 
-import { getCoins } from '../redux/actions';
+import { getCoinsByType } from '../redux/actions';
 
 // Components:
 import Header from '../components/Header';
@@ -11,10 +12,10 @@ import SearchBar from '../components/SearchBar';
 
 class ListOfCoins extends React.Component {
   componentDidMount = () => {
-    this.props.getCoins(this.props.match.params.type);
+    this.props.getCoinsByType(this.props.match.params.type);
   }
   renderList = () => {
-    return this.props.coins.map(i => {
+    return this.props.coinsByTpe.map(i => {
       let URL = `/images/${i.obverseLink}`;
       let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
@@ -50,8 +51,8 @@ class ListOfCoins extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    coins: state.reducer.coins
+    coinsByTpe: state.reducer.coinsByTpye
   }
 }
 
-export default connect(mapStateToProps, { getCoins })(ListOfCoins);
+export default connect(mapStateToProps, { getCoinsByType })(ListOfCoins);
