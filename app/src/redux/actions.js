@@ -132,7 +132,6 @@ export const createCoin = (values) => async dispatch => {
 }
 
 export const updateCoin = (values, id) => async dispatch => {
-  console.log(values)
   if (values.obverseLink instanceof File || values.reverseLink instanceof File) {
     await fetch(`/coins/${id}`,
     {
