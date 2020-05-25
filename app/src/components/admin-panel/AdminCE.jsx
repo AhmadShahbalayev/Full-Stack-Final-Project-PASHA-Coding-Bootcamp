@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class AdminCE extends React.Component {
   selectField = ({ label, input, meta: { touched, error, warning } }) => {
@@ -42,31 +43,45 @@ class AdminCE extends React.Component {
     )
   }
   render = () => {
-    return (
-      <form className='admin-panel' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
-        <h1 className='admin-header'>Admin panel</h1>
-        <div className='admin-ce-grid'>
-          <Field name='name' label='Coin name' component={this.inputField} />
-          <Field name='shortDescription' label='Short description' component={this.textAreaField} />
-          <Field name='obverseLink' label='Download the averse' component={this.fileField} />
-          <Field name='value' label='Face value' component={this.inputField} />
-          <Field name='reverseLink' label='Download the reverse' component={this.fileField} />
-          <Field name='year' label='Year of issue' component={this.inputField} />
-          <Field name='fullDescription' label='Long description' component={this.textAreaField} />
-          <Field name='coinType' label='Type of coin' component={this.selectField} />
-          <Field name='price' label='Price' component={this.inputField} />
-          <div className='btns-field'>
-            <button type='submit' className='login-btn'>Save</button>
-            <Link className='cancel-btn' to='/admin/panel'>Cancel</Link>
+    if (this.props.status) {
+      return (
+        <form className='admin-panel' onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+          <h1 className='admin-header'>Admin panel</h1>
+          <div className='admin-ce-grid'>
+            <Field name='name' label='Coin name' component={this.inputField} />
+            <Field name='shortDescription' label='Short description' component={this.textAreaField} />
+            <Field name='obverseLink' label='Download the averse' component={this.fileField} />
+            <Field name='value' label='Face value' component={this.inputField} />
+            <Field name='reverseLink' label='Download the reverse' component={this.fileField} />
+            <Field name='year' label='Year of issue' component={this.inputField} />
+            <Field name='fullDescription' label='Long description' component={this.textAreaField} />
+            <Field name='coinType' label='Type of coin' component={this.selectField} />
+            <Field name='price' label='Price' component={this.inputField} />
+            <div className='btns-field'>
+              <button type='submit' className='login-btn'>Save</button>
+              <Link className='cancel-btn' to='/admin/panel'>Cancel</Link>
+            </div>
+            <Field name='country' label='Country' component={this.inputField} />
+            <Field name='quality' label='Quality of the coin' component={this.inputField} />
+            <Field name='metal' label='Metal' component={this.inputField} />
+            <Field name='weight' label='Weight' component={this.inputField} />
           </div>
-          <Field name='country' label='Country' component={this.inputField} />
-          <Field name='quality' label='Quality of the coin' component={this.inputField} />
-          <Field name='metal' label='Metal' component={this.inputField} />
-          <Field name='weight' label='Weight' component={this.inputField} />
+        </form>
+      );
+    } else {
+      return (
+        <div style={{ padding: '52px' }}>
+          <h1>You are not logged in! Please <Link to='/admin'>Login</Link></h1>
         </div>
-      </form>
-    );
+      )
+    }
   }
 }
 
-export default reduxForm({ form: 'reduxAdminCE' })(AdminCE);
+const mapStateToProps = (state) => {
+  return {
+    status: state.reducer.status
+  }
+}
+
+export default reduxForm({ form: 'reduxAdminCE' })(connect(mapStateToProps, null)(AdminCE));
