@@ -131,31 +131,26 @@ export const createCoin = (values) => async dispatch => {
   })
 }
 
-export const updateCoin = (values, id) => async dispatch => {
-  if (values.obverseLink instanceof File || values.reverseLink instanceof File) {
-    await fetch(`/coins/${id}`,
+const postReq = async (body, id) => {
+  await fetch(`/coins/${id}`,
     {
       method: 'PUT',
-      body: createFormData(values),
-    }
-  ).then(res => {
-    dispatch({ type: UPDATE_COIN, payload: { ...values, id } })
-    history.push('/admin/panel')
-  })
-  } else {
-    await fetch(`/coins/${id}`,
-    {
-      method: 'PUT',
-      body: JSON.stringify(values),
+      body,
       headers: {
         'Content-Type': 'application/json'
       }
     }
-  ).then(res => {
-    dispatch({ type: UPDATE_COIN, payload: { ...values, id } })
-    history.push('/admin/panel')
-  })
+  )
+}
+
+export const updateCoin = (values, id) => async dispatch => {
+  if (values.obverseLink instanceof File || values.reverseLink instanceof File) {
+    await postReq(createFormData(values), id);
+  } else {
+    await postReq(JSON.stringify(values), id);
   }
+  dispatch({ type: UPDATE_COIN, payload: { ...values, id } })
+  history.push('/admin/panel')
 }
 
 export const deleteCoin = (id) => async dispatch => {
