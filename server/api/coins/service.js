@@ -4,7 +4,7 @@ module.exports = {
 
   getCoins: func => {
     pool.query(
-      `SELECT * FROM final.coins`,
+      `SELECT * FROM final.coins ORDER BY id DESC`,
       [],
       (err, res) => {
         if (err) return func(err);
@@ -15,7 +15,7 @@ module.exports = {
 
   getCoinById: (id, func) => {
     pool.query(
-      `SELECT * FROM final.coins WHERE id = ?`,
+      `SELECT * FROM final.coins WHERE id = ? ORDER BY id DESC`,
       [id],
       (err, res) => {
         if (err) return func(err);
@@ -89,7 +89,7 @@ module.exports = {
 
   getCatalog: (type, func) => {
     pool.query(
-      `SELECT * FROM final.coins WHERE coinType = '${type}'`,
+      `SELECT * FROM final.coins WHERE coinType = '${type}' ORDER BY id DESC`,
       [],
       (err, res) => {
         if (err) return func(err);
@@ -113,7 +113,7 @@ module.exports = {
   getAdmin: func => {
     pool.query(
       `SELECT username, password
-      FROM final.admins`,
+      FROM final.admins ORDER BY id DESC`,
       [],
       (err, res) => {
         if (err) return func(err);
@@ -134,7 +134,7 @@ module.exports = {
       OR shortDescription LIKE '%${value}%'
       OR fullDescription LIKE '%${value}%'
       OR quality LIKE '%${value}%'
-      OR coinType LIKE '%${value}%'`,
+      OR coinType LIKE '%${value}%' ORDER BY id DESC`,
       (err, res) => {
         if (err) return func(err);
         return func(null, res);
@@ -158,16 +158,16 @@ module.exports = {
 
     let sql = '';
     if (newData.every(item => item === '')) {
-      sql = `SELECT * FROM final.coins`;
+      sql = `SELECT * FROM final.coins ORDER BY id DESC`;
     } else {
       const result = newData.filter(val => val !== '');
       const where = result.join(' AND ');
-      sql = `SELECT * FROM final.coins WHERE ${where}`;
+      sql = `SELECT * FROM final.coins WHERE ${where} ORDER BY id DESC`;
     }
 
     const text = data.text;
 
-    if (sql === `SELECT * FROM final.coins`) {
+    if (sql === `SELECT * FROM final.coins ORDER BY id DESC`) {
       sql += ` WHERE name LIKE '%${text}%' OR shortDescription LIKE '%${text}%' OR fullDescription LIKE '%${text}%'`;
     } else {
       sql += ` AND (name LIKE '%${text}%' OR shortDescription LIKE '%${text}%' OR fullDescription LIKE '%${text}%')`;
@@ -180,7 +180,7 @@ module.exports = {
   },
 
   getSelectValues: func => {
-    const sql = `SELECT country, metal, quality FROM final.coins`;
+    const sql = `SELECT country, metal, quality FROM final.coins ORDER BY id DESC`;
     pool.query(sql, (err, res) => {
       if (err) return func(err);
       return func(null, res);
