@@ -92,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default reduxForm({ form: 'CreateAndEditForm' })(connect(mapStateToProps, null)(CreateAndEditForm));
+export default reduxForm({ form: 'CreateAndEditForm', enableReinitialize: true })(connect(mapStateToProps, null)(CreateAndEditForm));
