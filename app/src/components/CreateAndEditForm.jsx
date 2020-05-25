@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class AdminCE extends React.Component {
+class CreateAndEditForm extends React.Component {
   selectField = ({ label, input, meta: { touched, error, warning } }) => {
     return (
       <div>
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default reduxForm({ form: 'reduxAdminCE' })(connect(mapStateToProps, null)(AdminCE));
+export default reduxForm({ form: 'CreateAndEditForm' })(connect(mapStateToProps, null)(CreateAndEditForm));

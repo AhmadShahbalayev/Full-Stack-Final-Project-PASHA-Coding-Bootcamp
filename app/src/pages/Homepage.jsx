@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from './Header';
-import SearchBar from '../search-bar/SearchBar';
-import Catalog from './catalog/Catalog';
 import { connect } from 'react-redux';
-import FoundCoins from './FoundCoins';
 
-class Home extends React.Component {
+// Components:
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import Catalog from '../components/Catalog';
+import FoundCoins from '../components/FoundCoins';
+
+class Homepage extends React.Component {
   render = () => {
     return (
       <div className='homepage'>
@@ -23,4 +25,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, null)(Homepage);

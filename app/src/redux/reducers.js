@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import {
-  LOADING,
   GET_ALL_COINS,
   GET_COINS,
   GET_COIN_BY_ID,
@@ -18,7 +17,6 @@ const defaultStore = {
   allCoins: [],
   coins: [],
   coin: {},
-  loading: false,
   found: false,
   status: localStorage.getItem('LoggedIn'),
   countries: [],
@@ -42,11 +40,6 @@ const reducer = (store = defaultStore, action) => {
       return {
         ...store,
         coin: action.payload
-      }
-    case LOADING:
-      return {
-        ...store,
-        loading: !store.loading
       }
     case DELETE_COIN:
       return {

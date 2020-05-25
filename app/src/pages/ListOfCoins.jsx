@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCoins } from '../../redux/actions';
-import Header from '../homepage/Header';
-import SearchBar from '../search-bar/SearchBar';
 import { Link } from 'react-router-dom';
+
+// Tools: 
+import { getCoins } from '../redux/actions';
+
+// Components:
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 
 class ListOfCoins extends React.Component {
   componentDidMount = () => {

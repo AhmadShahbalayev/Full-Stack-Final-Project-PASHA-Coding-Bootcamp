@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCoinById, updateCoin } from '../../redux/actions';
-import AdminCE from './AdminCE';
+
+// Tools:
+import { getCoinById, updateCoin } from '../redux/actions';
+
+// Components:
+import CreateAndEditForm from '../components/CreateAndEditForm';
 
 class CoinEdit extends React.Component {
   componentDidMount = () => {
@@ -18,7 +22,7 @@ class CoinEdit extends React.Component {
     if (+id === +nextID) {
       return (
         <div>
-          <AdminCE
+          <CreateAndEditForm
             initialValues={this.props.coin}
             onSubmit={this.onSubmit}
           />

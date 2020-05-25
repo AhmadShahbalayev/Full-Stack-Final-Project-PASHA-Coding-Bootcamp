@@ -1,6 +1,5 @@
 import history from '../history';
 
-export const LOADING = 'LOADING';
 export const GET_ALL_COINS = 'GET_ALL_COINS';
 export const GET_COINS = 'GET_COINS';
 export const ADMIN_CE = 'ADMIN_CE';
@@ -13,8 +12,6 @@ export const LOGOUT = 'LOGOUT';
 export const SEARCH_AND_FILTER = 'SEARCH_AND_FILTER';
 export const GET_SELECT_VALUES = 'GET_SELECT_VALUES';
 export const CHANGE_FOUND = 'CHANGE_FOUND';
-
-export const loading = () => { return { type: LOADING } }
 
 // Admin panel: 
 

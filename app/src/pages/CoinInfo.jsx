@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCoinById } from '../../../redux/actions';
+
+// Tools:
+import { getCoinById } from '../redux/actions';
 
 class CoinInfo extends React.Component {
   componentDidMount = () => {

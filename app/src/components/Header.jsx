@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import history from '../../history';
 import { connect } from 'react-redux';
-import { changeFound } from '../../redux/actions';
+
+// Tools:
+import { changeFound } from '../redux/actions';
+import history from '../history';
 
 class Header extends React.Component {
   returnToHome = () => {

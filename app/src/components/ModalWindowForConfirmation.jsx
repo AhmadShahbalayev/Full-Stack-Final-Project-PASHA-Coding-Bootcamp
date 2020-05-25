@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteCoin } from '../../redux/actions';
 
-class ModalWindow extends React.Component {
+// Tools:
+import { deleteCoin } from '../redux/actions';
+
+class ModalWindowForConfirmation extends React.Component {
   deleteCoin = (e) => {
     this.props.deleteCoin(e.target.value);
     this.props.showOrHide();
@@ -22,4 +24,4 @@ class ModalWindow extends React.Component {
   }
 }
 
-export default connect(null, { deleteCoin })(ModalWindow);
+export default connect(null, { deleteCoin })(ModalWindowForConfirmation);

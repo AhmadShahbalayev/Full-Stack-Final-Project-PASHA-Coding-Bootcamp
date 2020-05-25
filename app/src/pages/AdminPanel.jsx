@@ -1,10 +1,14 @@
 import React from 'react';
-import SearchBar from '../search-bar/SearchBar';
 import { connect } from 'react-redux';
-import { getAllCoins, deleteCoin, logout } from '../../redux/actions';
 import { Link } from 'react-router-dom';
-import history from '../../history';
-import ModalWindow from './ModalWindow';
+
+// Tools:
+import history from '../history';
+import { getAllCoins, deleteCoin, logout } from '../redux/actions';
+
+// Components:
+import ModalWindow from '../components/ModalWindowForConfirmation';
+import SearchBar from '../components/SearchBar';
 
 class AdminPanel extends React.Component {
   state = {

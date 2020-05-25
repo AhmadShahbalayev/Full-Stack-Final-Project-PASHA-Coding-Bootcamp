@@ -1,7 +1,11 @@
 import React from 'react';
-import AdminCE from './AdminCE';
-import { createCoin } from '../../redux/actions';
 import { connect } from 'react-redux';
+
+// Tools:
+import { createCoin } from '../redux/actions';
+
+// Components:
+import CreateAndEditForm from '../components/CreateAndEditForm';
 
 class CoinCreate extends React.Component {
   onSubmit = (values) => {
@@ -10,7 +14,7 @@ class CoinCreate extends React.Component {
   render = () => {
     return (
       <div>
-        <AdminCE onSubmit={this.onSubmit} />
+        <CreateAndEditForm onSubmit={this.onSubmit} />
       </div>
     );
   }

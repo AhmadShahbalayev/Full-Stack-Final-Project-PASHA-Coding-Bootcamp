@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchAndFilter } from '../../redux/actions';
-import Filter from '../homepage/advanced-filter/Filter';
+
+// Tools:
+import { searchAndFilter } from '../redux/actions';
+
+// Components:
+import Filter from './Filter';
 
 class SearchBar extends React.Component {
   state = {

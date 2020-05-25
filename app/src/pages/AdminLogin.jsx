@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../redux/actions';
+
+// Tools:
+import { login } from '../redux/actions';
 
 class AdminLogin extends React.Component {
   state = {

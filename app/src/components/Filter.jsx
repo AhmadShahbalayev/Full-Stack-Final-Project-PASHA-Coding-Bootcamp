@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { getAllCoins, getSelectValues } from '../../../redux/actions';
+
+// Tools:
+import { getAllCoins, getSelectValues } from '../redux/actions';
 
 class Filter extends React.Component {
   componentDidMount = () => {
