@@ -158,16 +158,16 @@ module.exports = {
 
     let sql = '';
     if (newData.every(item => item === '')) {
-      sql = `SELECT * FROM final.coins ORDER BY id DESC`;
+      sql = `SELECT * FROM final.coins`;
     } else {
       const result = newData.filter(val => val !== '');
       const where = result.join(' AND ');
-      sql = `SELECT * FROM final.coins WHERE ${where} ORDER BY id DESC`;
+      sql = `SELECT * FROM final.coins WHERE ${where}`;
     }
 
     const text = data.text;
 
-    if (sql === `SELECT * FROM final.coins ORDER BY id DESC`) {
+    if (sql === `SELECT * FROM final.coins`) {
       sql += ` WHERE name LIKE '%${text}%' OR shortDescription LIKE '%${text}%' OR fullDescription LIKE '%${text}%'`;
     } else {
       sql += ` AND (name LIKE '%${text}%' OR shortDescription LIKE '%${text}%' OR fullDescription LIKE '%${text}%')`;

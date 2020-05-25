@@ -2,46 +2,16 @@ import history from '../history';
 
 export const GET_ALL_COINS = 'GET_ALL_COINS';
 export const GET_COINS_BY_TYPE = 'GET_COINS_BY_TYPE';
-export const ADMIN_CE = 'ADMIN_CE';
 export const GET_COIN_BY_ID = 'GET_COIN_BY_ID';
-export const LOGIN = 'LOGIN';
+export const GET_SELECT_VALUES = 'GET_SELECT_VALUES';
+export const SEARCH_AND_FILTER = 'SEARCH_AND_FILTER';
+export const CHANGE_FOUND = 'CHANGE_FOUND';
+export const CREATE_AND_EDIT = 'CREATE_AND_EDIT';
 export const DELETE_COIN = 'DELETE_COIN';
 export const UPDATE_COIN = 'UPDATE_COIN';
 export const SEARCH_COIN = 'SEARCH_COIN';
+export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
-export const SEARCH_AND_FILTER = 'SEARCH_AND_FILTER';
-export const GET_SELECT_VALUES = 'GET_SELECT_VALUES';
-export const CHANGE_FOUND = 'CHANGE_FOUND';
-
-// Admin panel: 
-
-export const login = (values) => async dispatch => {
-  await fetch('/admin',
-    {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-  ).then(res => res.json())
-    .then(res => {
-      const { status } = res;
-      if (status) {
-        localStorage.setItem('LoggedIn', true);
-        history.push('/admin/panel');
-      };
-
-      dispatch({ type: LOGIN, payload: status })
-    })
-}
-
-export const logout = () => {
-  return {
-    type: LOGOUT,
-    payload: false
-  }
-}
 
 // Get Coins:
 
@@ -83,6 +53,56 @@ export const searchAndFilter = (search, filter) => async dispatch => {
     })
 }
 
+
+export const getSelectValues = () => async dispatch => {
+  fetch(`/get-select-values`)
+    .then(res => res.json())
+    .then(res => {
+      if (res.result === 0) {
+        alert(res.message)
+      } else {
+        dispatch({ type: GET_SELECT_VALUES, payload: res })
+      }
+    })
+}
+
+export const changeFound = () => {
+  return {
+    type: CHANGE_FOUND,
+    payload: false
+  }
+}
+
+// Admin panel: 
+
+export const login = (values) => async dispatch => {
+  await fetch('/admin',
+    {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then(res => res.json())
+    .then(res => {
+      const { status } = res;
+      if (status) {
+        localStorage.setItem('LoggedIn', true);
+        history.push('/admin/panel');
+      };
+
+      dispatch({ type: LOGIN, payload: status })
+    })
+}
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
+    payload: false
+  }
+}
+
 const createFormData = (val) => {
   let formData = new FormData();
   formData.append('name', val.name);
@@ -106,7 +126,7 @@ export const createCoin = (values) => async dispatch => {
     method: 'POST',
     body: createFormData(values)
   }).then(res => res.json()).then(res => {
-    dispatch({ type: ADMIN_CE, payload: res.data })
+    dispatch({ type: CREATE_AND_EDIT, payload: res.data })
     history.push('/admin/panel');
   })
 }
@@ -127,23 +147,4 @@ export const deleteCoin = (id) => async dispatch => {
   await fetch(`/delete-coin/${id}`, { method: 'DELETE' })
     .then(res => res.json());
   dispatch({ type: DELETE_COIN, payload: id })
-}
-
-export const getSelectValues = () => async dispatch => {
-  fetch(`/get-select-values`)
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === 0) {
-        alert(res.message)
-      } else {
-        dispatch({ type: GET_SELECT_VALUES, payload: res })
-      }
-    })
-}
-
-export const changeFound = () => {
-  return {
-    type: CHANGE_FOUND,
-    payload: false
-  }
 }

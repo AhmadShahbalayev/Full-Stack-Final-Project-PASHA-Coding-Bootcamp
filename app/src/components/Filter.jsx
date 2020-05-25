@@ -1,16 +1,14 @@
-// Libraries:
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-// Tools:
-import { getAllCoins, getSelectValues } from '../redux/actions';
+import { getSelectValues } from '../redux/actions';
 
 class Filter extends React.Component {
   componentDidMount = () => {
     this.props.getSelectValues();
   }
-  countryFiled = ({ label, input, meta: { touched, error, warning } }) => {
+  countryFiled = ({ label, input }) => {
     let uniqueCountries = [...new Set(this.props.countries)];
     return (
       <div>
@@ -24,7 +22,7 @@ class Filter extends React.Component {
       </div>
     )
   }
-  qualityFiled = ({ label, input, meta: { touched, error, warning } }) => {
+  qualityFiled = ({ label, input }) => {
     let uniqueQualities = [...new Set(this.props.qualities)];
     return (
       <div>
@@ -38,7 +36,7 @@ class Filter extends React.Component {
       </div>
     )
   }
-  metalField = ({ label, input, meta: { touched, error, warning } }) => {
+  metalField = ({ label, input }) => {
     let uniqueMetals = [...new Set(this.props.metals)];
     return (
       <div>
@@ -52,7 +50,7 @@ class Filter extends React.Component {
       </div>
     )
   }
-  numberField = ({ label, input, meta: { touched, error, warning } }) => {
+  numberField = ({ label, input }) => {
     return (
       <div>
         <label>{label}</label>
@@ -78,7 +76,6 @@ class Filter extends React.Component {
               <Field label='to' name='priceTo' component={this.numberField} />
             </div>
             <Field label='Quality of the coin' name='quality' component={this.qualityFiled} />
-            {/* <button type='submit' className='login-btn filter-btn'>Apply filter</button> */}
           </div>
         </form>
       </div>
@@ -95,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default reduxForm({ form: 'reduxFilter' })(connect(mapStateToProps, { getAllCoins, getSelectValues })(Filter));
+export default reduxForm({ form: 'reduxFilter' })(connect(mapStateToProps, { getSelectValues })(Filter));
