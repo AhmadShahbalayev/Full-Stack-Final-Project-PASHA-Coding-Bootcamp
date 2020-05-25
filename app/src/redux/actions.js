@@ -132,7 +132,9 @@ export const createCoin = (values) => async dispatch => {
 }
 
 export const updateCoin = (values, id) => async dispatch => {
-  await fetch(`/coins/${id}`,
+  console.log(values)
+  if (values.obverseLink instanceof File || values.reverseLink instanceof File) {
+    await fetch(`/coins/${id}`,
     {
       method: 'PUT',
       body: createFormData(values),
@@ -141,6 +143,20 @@ export const updateCoin = (values, id) => async dispatch => {
     dispatch({ type: UPDATE_COIN, payload: { ...values, id } })
     history.push('/admin/panel')
   })
+  } else {
+    await fetch(`/coins/${id}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then(res => {
+    dispatch({ type: UPDATE_COIN, payload: { ...values, id } })
+    history.push('/admin/panel')
+  })
+  }
 }
 
 export const deleteCoin = (id) => async dispatch => {
