@@ -9,7 +9,6 @@ class AdminLogin extends React.Component {
   state = {
     username: '',
     password: '',
-    visibility: false
   }
   getValue = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -18,10 +17,6 @@ class AdminLogin extends React.Component {
     e.preventDefault();
     const { username, password } = this.state;
     this.props.login({ username, password });
-    if (!this.props.status) this.showError();
-  }
-  showError = () => {
-    this.setState({ visibility: true })
   }
   render = () => {
     return (
@@ -37,17 +32,10 @@ class AdminLogin extends React.Component {
             <input onChange={this.getValue} name='password' value={this.state.password} type='password' id='password' />
           </div>
           <button className='login-btn' type='submit'>Sign in</button>
-          {/* {this.state.visibility && <h3>Invalid username or passoword!</h3>} */} 
         </div>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    status: state.reducer.status
-  }
-};
-
-export default connect(mapStateToProps, { login })(AdminLogin);
+export default connect(null, { login })(AdminLogin);
