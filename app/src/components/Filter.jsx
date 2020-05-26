@@ -28,8 +28,8 @@ class Filter extends React.Component {
       <div>
         <label>{label}</label>
         <select {...input}>
-        <option hidden></option>
-        {uniqueQualities.map(item => {
+          <option hidden></option>
+          {uniqueQualities.map(item => {
             return <option key={item} value={item}>{item}</option>
           })}
         </select>
@@ -42,19 +42,18 @@ class Filter extends React.Component {
       <div>
         <label>{label}</label>
         <select {...input}>
-        <option hidden></option>
-        {uniqueMetals.map(item => {
+          <option hidden></option>
+          {uniqueMetals.map(item => {
             return <option key={item} value={item}>{item}</option>
           })}
         </select>
       </div>
     )
   }
-  numberField = ({ label, input }) => {
+  numberField = ({ input, placeholder }) => {
     return (
       <div>
-        <label>{label}</label>
-        <input style={{padding: '10px'}} type='number' {...input}></input>
+        <input placeholder={placeholder} type='number' {...input}></input>
       </div>
     )
   }
@@ -66,14 +65,18 @@ class Filter extends React.Component {
             <Field label='Issuing country' name='country' component={this.countryFiled} />
             <div className='from-to'>
               <p>Year of issue</p>
-              <Field label='from' name='yearFrom' component={this.numberField} />
-              <Field label='to' name='yearTo' component={this.numberField} />
+              <div>
+                <Field placeholder='from' name='yearFrom' component={this.numberField} />
+                <Field placeholder='to' name='yearTo' component={this.numberField} />
+              </div>
             </div>
             <Field label='Metal' name='metal' component={this.metalField} />
             <div className='from-to'>
               <p>Price</p>
-              <Field label='from' name='priceFrom' component={this.numberField} />
-              <Field label='to' name='priceTo' component={this.numberField} />
+              <div>
+                <Field placeholder='from' name='priceFrom' component={this.numberField} />
+                <Field placeholder='to' name='priceTo' component={this.numberField} />
+              </div>
             </div>
             <Field label='Quality of the coin' name='quality' component={this.qualityFiled} />
           </div>

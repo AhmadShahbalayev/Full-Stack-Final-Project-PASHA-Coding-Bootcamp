@@ -31,9 +31,9 @@ class SearchBar extends React.Component {
     let values = this.props.filterForm?.values;
     return (
       <section className='search-bar-box'>
-        <h6>Input field</h6>
+        <p>Input field</p>
         <div className='search-bar'>
-          <input style={{ padding: '10px' }} type="text" value={this.state.value} onChange={this.getValue} />
+          <input type="text" value={this.state.value} onChange={this.getValue} />
           <button onClick={this.findCoins}>Search</button>
         </div>
         {this.props.advanced ? <span className='advanced-filter' onClick={this.change}>Advanced filter ></span> : null}

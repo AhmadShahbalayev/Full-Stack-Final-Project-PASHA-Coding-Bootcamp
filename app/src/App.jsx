@@ -14,7 +14,7 @@ import CoinCreate from './pages/CoinCreate';
 class App extends React.Component {
   render = () => {
     return (
-      <div>
+      <div className='app'>
         <Route exact path='/' component={Homepage} />
         <Route exact path='/catalog/:type' component={ListOfCoins} />
         <Route exact path='/admin' component={AdminLogin} />

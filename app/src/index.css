@@ -96,7 +96,7 @@
   flex-direction: column;
 }
 
-.search-bar-box h6 {
+.search-bar-box p {
   font-weight: 500;
   font-size: 14px;
   line-height: 109%;
@@ -106,6 +106,7 @@
   width: 374px;
   height: 48px;
   margin: 5px 30px 10px 0;
+  padding: 10px;
 }
 
 .search-bar button {
@@ -114,9 +115,6 @@
   height: 48px;
   border: none;
   color: white;
-}
-
-.search-bar button:hover {
   cursor: pointer;
 }
 
@@ -141,6 +139,7 @@
   font-weight: 500;
   font-size: 28px;
   line-height: 100%;
+  cursor: pointer;
 }
 
 .show-all {
@@ -148,22 +147,12 @@
   font-size: 14px;
   line-height: 109%;
   margin: 20px 0 10px 0;
+  cursor: pointer;
 }
 
 .m-catalog-img {
   width: 214px;
   height: 214px;
-}
-
-.catalog-header:hover {
-  cursor: pointer;
-}
-
-.show-all:hover {
-  cursor: pointer;
-}
-
-.m-catalog-img:hover {
   cursor: pointer;
 }
 
@@ -551,7 +540,7 @@
 
 .from-to {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .from-to div {
@@ -565,17 +554,12 @@
 
 .from-to input {
   margin-right: 15px;
+  padding: 10px;
 }
 
 .from-to label {
   display: inline-block;
   margin: auto 15px auto 0;
-}
-
-.filter-btn {
-  align-self: center;
-  justify-self: right;
-  margin: 15px;
 }
 
 /* Modal window */
