@@ -23,12 +23,12 @@ class AdminPanel extends React.Component {
     this.props.getAllCoins();
   }
   renderList = () => {
-    return this.props.allCoins.map(i => {
+    return this.props.allCoins.map((i, index) => {
       let URL = `/images/${i.obverseLink}`;
       let ALT = `icon_of_${i.name}`;
       let ID = `/coins/${i.id}`;
       return (
-        <div className='admin-panel-list' key={i.id}>
+        <div className='admin-panel-list' key={index}>
           <div className='coin-box'>
             <Link to={ID} style={{ textDecoration: 'none' }}>
               <img src={URL} alt={ALT} />

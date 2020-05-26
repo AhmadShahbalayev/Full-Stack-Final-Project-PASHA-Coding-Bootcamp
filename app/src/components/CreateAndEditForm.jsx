@@ -18,7 +18,7 @@ class CreateAndEditForm extends React.Component {
           <option>invested</option>
           <option>exclusive</option>
         </select>
-        {touched && error && <p>Required!</p>}
+        {touched && error && <p className='error'>Required!</p>}
       </div>
     )
   }
@@ -28,7 +28,7 @@ class CreateAndEditForm extends React.Component {
       <div>
         <label>{label}</label>
         <input type='file' {...input}></input>
-        {touched && error && <p className='error'>Required!</p>}
+        {error && <p className='error'>Required!</p>}
       </div>
     )
   }

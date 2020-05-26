@@ -92,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default reduxForm({ form: 'reduxFilter' })(connect(mapStateToProps, { getSelectValues })(Filter));
+export default reduxForm({ form: 'reduxFilter', enableReinitialize: true })(connect(mapStateToProps, { getSelectValues })(Filter));

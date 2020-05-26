@@ -28,10 +28,7 @@ class SearchBar extends React.Component {
     this.setState({ modal: false })
   }
   render = () => {
-    let values = {};
-    if (this.props.filterForm !== undefined) {
-      values = this.props.filterForm.values;
-    }
+    let values = this.props.filterForm?.values;
     return (
       <section className='search-bar-box'>
         <h6>Input field</h6>
