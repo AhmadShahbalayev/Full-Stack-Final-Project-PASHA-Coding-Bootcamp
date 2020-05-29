@@ -598,3 +598,24 @@
   color: red;
   margin-top: 2px;
 }
+
+@media screen and (max-width: 1300px) {
+  .admin-panel-container {
+    grid-template-columns: 1fr;
+  }
+  .add-login-and-logout-box {
+    justify-self: left;
+    margin-top: -65px;
+    margin-bottom: 25px;
+    width: 523px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .info-box {
+    width: 500px;
+  }
+  .info-textarea {
+    margin-top: 50px;
+  }
+}
